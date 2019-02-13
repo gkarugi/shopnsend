@@ -1,7 +1,7 @@
 ---
 name: UserStory
 about: Provides the general format for writing a user story
-title: "[USER STORY]"
+title: 'USER STORY:'
 labels: user stories
 assignees: gkarugi
 
