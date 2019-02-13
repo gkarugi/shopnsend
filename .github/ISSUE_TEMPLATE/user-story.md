@@ -3,7 +3,7 @@ name: User Story
 about: Provides the general format for writing a user story
 title: 'USER STORY:'
 labels: user stories
-assignees: gkarugi
+assignees: ''
 
 ---
 
