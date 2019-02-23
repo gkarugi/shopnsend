@@ -18,6 +18,7 @@ Route::group(['middleware' => 'verified', 'prefix' => 'dashboard', 'as' => 'dash
         Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
         Route::resource('stores', 'StoreController');
         Route::resource('stores/{store}/branches', 'StoreBranchController');
+        Route::resource('categories', 'ProductCategoryController');
     });
 });
 

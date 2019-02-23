@@ -2,6 +2,10 @@
 
 @section('page_title','Store Branches')
 
+@section('page_action')
+    <a href="{{ route('dashboard.admin.branches.index', $store) }}" class="btn btn-info">All</a>
+@stop
+
 @section('page')
     <div class="row row-cards row-deck">
         <div class="col-12">

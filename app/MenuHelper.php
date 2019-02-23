@@ -14,7 +14,7 @@ class MenuHelper
                     ['route' => route('dashboard.admin.stores.index'), 'text' => 'Stores'],
                 ]],
                 ['route' => '#', 'text' => 'Catalogue','icon' => '','children' => [
-                    ['route' => '#','text' => 'Categories'],
+                    ['route' => route('dashboard.admin.categories.index'), 'text' => 'Categories'],
                     ['route' => '#', 'text' => 'Products'],
                 ]],
                 ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
@@ -23,10 +23,14 @@ class MenuHelper
                 ]],
             ]);
 
-        } elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('administrator')) {
+        } elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('store_owner')) {
             //Dashboard menu items for store owner
             $menu = collect([
                 ['route' => '#', 'icon' => '', 'text' => 'Dashboard'],
+                ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
+                    ['route' => '#','text' => 'Orders'],
+                    ['route' => '#', 'text' => 'Customers'],
+                ]],
             ]);
         } else {
             //Dashboard menu items for any one else with a different role
