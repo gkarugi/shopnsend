@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/dashboard/js/app"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/manage/js/app"],{
 
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
@@ -26110,10 +26110,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/dashboard/app.js":
-/*!***************************************!*\
-  !*** ./resources/js/dashboard/app.js ***!
-  \***************************************/
+/***/ "./resources/js/manage/app.js":
+/*!************************************!*\
+  !*** ./resources/js/manage/app.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26122,7 +26122,7 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/dashboard/bootstrap.js"); // window.Vue = require('vue');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/manage/bootstrap.js"); // window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -26145,14 +26145,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/dashboard/bootstrap.js");
 // });
 
 
-__webpack_require__(/*! ./script */ "./resources/js/dashboard/script.js");
+__webpack_require__(/*! ./script */ "./resources/js/manage/script.js");
 
 /***/ }),
 
-/***/ "./resources/js/dashboard/bootstrap.js":
-/*!*********************************************!*\
-  !*** ./resources/js/dashboard/bootstrap.js ***!
-  \*********************************************/
+/***/ "./resources/js/manage/bootstrap.js":
+/*!******************************************!*\
+  !*** ./resources/js/manage/bootstrap.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26207,10 +26207,10 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/dashboard/script.js":
-/*!******************************************!*\
-  !*** ./resources/js/dashboard/script.js ***!
-  \******************************************/
+/***/ "./resources/js/manage/script.js":
+/*!***************************************!*\
+  !*** ./resources/js/manage/script.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -26317,10 +26317,10 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./resources/sass/dashboard/bundle.scss":
-/*!**********************************************!*\
-  !*** ./resources/sass/dashboard/bundle.scss ***!
-  \**********************************************/
+/***/ "./resources/sass/manage/bundle.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/manage/bundle.scss ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -26329,16 +26329,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************!*\
-  !*** multi ./resources/js/dashboard/app.js ./resources/sass/dashboard/bundle.scss ***!
-  \************************************************************************************/
+/*!******************************************************************************!*\
+  !*** multi ./resources/js/manage/app.js ./resources/sass/manage/bundle.scss ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Freelance\shopnsend\resources\js\dashboard\app.js */"./resources/js/dashboard/app.js");
-module.exports = __webpack_require__(/*! D:\Freelance\shopnsend\resources\sass\dashboard\bundle.scss */"./resources/sass/dashboard/bundle.scss");
+__webpack_require__(/*! D:\Freelance\shopnsend\resources\js\manage\app.js */"./resources/js/manage/app.js");
+module.exports = __webpack_require__(/*! D:\Freelance\shopnsend\resources\sass\manage\bundle.scss */"./resources/sass/manage/bundle.scss");
 
 
 /***/ })
 
-},[[0,"/dashboard/js/manifest","/dashboard/js/vendor"]]]);
+},[[0,"/manage/js/manifest","/manage/js/vendor"]]]);

@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Store extends Model
+class StoreBranch extends Model
 {
     use Sluggable;
 
     protected $fillable = [
-        'name', 'slug', 'user_id', 'active'
+        'name', 'slug'
     ];
 
     /**
@@ -28,13 +27,8 @@ class Store extends Model
         ];
     }
 
-    public function owner()
+    public function store()
     {
-        return $this->belongsTo(User::class,'user_id');
-    }
-
-    public function branches()
-    {
-        return $this->hasMany(StoreBranch::class,'store_id');
+        return $this->belongsTo(Store::class,'store_id');
     }
 }

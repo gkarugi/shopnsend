@@ -13,12 +13,12 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('/dashboard/js/manifest.js') }}" defer></script>
-    <script src="{{ mix('/dashboard/js/vendor.js') }}" defer></script>
-    <script src="{{ mix('/dashboard/js/app.js') }}" defer></script>
+    <script src="{{ mix('/manage/js/manifest.js') }}" defer></script>
+    <script src="{{ mix('/manage/js/vendor.js') }}" defer></script>
+    <script src="{{ mix('/manage/js/app.js') }}" defer></script>
 
     <!-- CSS -->
-    <link href="{{ mix('/dashboard/css/bundle.css') }}" rel="stylesheet">
+    <link href="{{ mix('/manage/css/bundle.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,21 +39,17 @@
 
 </head>
 
-<body class="@yield('bodyClass')">
-
-    <div id="app">
+    <body class="@yield('bodyClass')">
         @yield('mainLayout')
-    </div>
 
-    @if(old('modal') !== null)
-        <script type="application/javascript">
-            $(function() {
-                $('.{{ old('modal')}}').modal('show');
-            });
-        </script>
-    @endif
+        @if(old('modal') !== null)
+            <script type="application/javascript">
+                $(function() {
+                    $('.{{ old('modal')}}').modal('show');
+                });
+            </script>
+        @endif
 
-    @stack('scripts')
-
+        @stack('scripts')
     </body>
 </html>

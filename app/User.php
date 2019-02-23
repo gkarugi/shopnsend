@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Role;
+use App\Models\Store;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -78,5 +79,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function inRole(string $roleSlug)
     {
         return $this->roles()->where('slug', $roleSlug)->count() == 1;
+    }
+
+    public function stores()
+    {
+        return $this->hasMany(Store::class,'user_id');
     }
 }

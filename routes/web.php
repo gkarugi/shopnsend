@@ -13,8 +13,16 @@
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => 'verified', 'prefix' => 'myDashboard', 'as' => 'dashboard.'],function () {
+Route::group(['middleware' => 'verified', 'prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::group(['as' => 'admin.'], function () {
-//        Route::resource('stores', '');
+        Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
+        Route::resource('stores', 'StoreController');
+        Route::resource('stores/{store}/branches', 'StoreBranchController');
     });
+});
+
+Route::group(['as' => 'website.'],function () {
+   Route::get('/', function () {
+      return view('welcome');
+   });
 });
