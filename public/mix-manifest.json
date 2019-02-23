@@ -1,6 +1,6 @@
 {
-    "/dashboard/js/app.js": "/dashboard/js/app.js",
-    "/dashboard/css/bundle.css": "/dashboard/css/bundle.css",
-    "/dashboard/js/manifest.js": "/dashboard/js/manifest.js",
-    "/dashboard/js/vendor.js": "/dashboard/js/vendor.js"
+    "/manage/js/app.js": "/manage/js/app.js",
+    "/manage/css/bundle.css": "/manage/css/bundle.css",
+    "/manage/js/manifest.js": "/manage/js/manifest.js",
+    "/manage/js/vendor.js": "/manage/js/vendor.js"
 }

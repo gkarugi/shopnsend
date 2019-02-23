@@ -69,8 +69,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
         // TODO: refactor how roles are attached to user
-        $user->roles()->attach(2);
+        $user->roles()->attach(3);
 
         return $user;
     }

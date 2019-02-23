@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => 'verified'],function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'verified', 'prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+    Route::group(['as' => 'admin.'], function () {
+        Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
+        Route::resource('stores', 'StoreController');
+        Route::resource('stores/{store}/branches', 'StoreBranchController');
+        Route::resource('categories', 'ProductCategoryController');
+    });
 });
 
+Route::group(['as' => 'website.'],function () {
+   Route::get('/', function () {
+      return view('welcome');
+   });
+});

@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/dashboard/app.js', 'public/dashboard/js')
-    .sass('resources/sass/dashboard/bundle.scss', 'public/dashboard/css')
+mix.js('resources/js/manage/app.js', 'public/manage/js')
+    .sass('resources/sass/manage/bundle.scss', 'public/manage/css')
     .extract(['vue','jquery']);
     // .js('resources/js/app.js', 'public/js')
     // .sass('resources/sass/app.scss', 'public/web/css');

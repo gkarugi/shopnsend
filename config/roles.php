@@ -19,6 +19,11 @@ return [
             'slug' => 'administrator',
             'permissions' => [],
         ],
+        'store_owner' => [
+            'name' => 'Store Owner',
+            'slug' => 'store_owner',
+            'permissions' => [],
+        ],
         'customer' => [
             'name' => 'Customer',
             'slug' => 'customer',
