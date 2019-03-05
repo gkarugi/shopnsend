@@ -51,7 +51,7 @@ class ProductController extends Controller
             'currency' => 'KES',
             'description' => $request->get('name'),
             'product_grouping_id' => (!is_null($request->get('grouping'))) ? $request->get('grouping') : null,
-            'product_category_id' => (!is_null($request->get('category'))) ? $request->get('grouping') : null,
+            'product_category_id' => (!is_null($request->get('category'))) ? $request->get('category') : null,
         ]);
 
         if ($request->hasFile('main_image')) {
