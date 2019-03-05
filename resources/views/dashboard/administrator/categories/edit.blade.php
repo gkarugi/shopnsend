@@ -3,7 +3,7 @@
 @section('page_title','Product Categories')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.categories.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('categories.index') }}" class="btn btn-info">All</a>
 @stop
 
 @section('page')
@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Edit Product Category - {{ $category->name }}</h3>
                 </div>
-                <form action="{{ route('dashboard.admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 

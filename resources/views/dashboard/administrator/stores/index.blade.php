@@ -3,7 +3,7 @@
 @section('page_title','Stores')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.stores.create') }}" class="btn btn-info">Create</a>
+    <a href="{{ route('stores.create') }}" class="btn btn-info">Create</a>
 @stop
 
 @section('page')
@@ -45,13 +45,13 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('dashboard.admin.branches.index', $store) }}" class="btn btn-secondary btn-sm">Branches</a>
+                                        <a href="{{ route('branches.index', $store) }}" class="btn btn-secondary btn-sm">Branches</a>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="icon" href="{{ route('dashboard.admin.stores.edit', $store) }}">
+                                        <a class="icon" href="{{ route('stores.edit', $store) }}">
                                             <i class="fe fe-edit"></i>
                                         </a>
                                     </td>

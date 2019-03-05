@@ -1,14 +1,5 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import 'website/variables';
-
-// Bootstrap
-@import '../../../node_modules/bootstrap/scss/bootstrap';
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// Impot UI Kit
+@import "uikit";

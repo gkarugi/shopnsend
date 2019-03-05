@@ -63,11 +63,25 @@ class StoreController extends Controller
 
         $user->roles()->attach(2);
 
-        $user->stores()->create([
+        $store = $user->stores()->create([
             'name' => $request->get('store_name'),
         ]);
 
-        return redirect()->route('dashboard.admin.stores.index')->withMessage('successfully created');
+        if ($request->hasFile('main_image')) {
+            $store->addMediaFromRequest('main_image')
+                ->usingName($request->get('name') . ' main image')
+                ->usingFileName($store->slug . '-main-image.' . $request->file('main_image')->getClientOriginalExtension())
+                ->toMediaCollection('main-images');
+        }
+
+        if ($request->hasFile('banner_image')) {
+            $store->addMediaFromRequest('banner_image')
+                ->usingName($request->get('name') . ' banner')
+                ->usingFileName($store->slug . '-banner-image.' . $request->file('banner_image')->getClientOriginalExtension())
+                ->toMediaCollection('banner-images');
+        }
+
+        return redirect()->route('stores.index')->withMessage('successfully created');
     }
 
     /**
@@ -105,7 +119,25 @@ class StoreController extends Controller
             'name' => $request->get('store_name')
         ]);
 
-        return redirect()->route('dashboard.admin.stores.index')->withMessage('successfully updated');
+        if ($request->hasFile('main_image')) {
+            ($store->getFirstMedia('main-images') !== null) ? $store->getFirstMedia('main-images')->delete() : null;
+
+            $store->addMediaFromRequest('main_image')
+                ->usingName($request->get('name') . ' main image')
+                ->usingFileName($store->slug . '-main-image.' . $request->file('main_image')->getClientOriginalExtension())
+                ->toMediaCollection('main-images');
+        }
+
+        if ($request->hasFile('banner_image')) {
+            ($store->getFirstMedia('banner-images') !== null) ? $store->getFirstMedia('banner-images')->delete() : null;
+
+            $store->addMediaFromRequest('banner_image')
+                ->usingName($request->get('name') . ' banner')
+                ->usingFileName($store->slug . '-banner-image.' . $request->file('banner_image')->getClientOriginalExtension())
+                ->toMediaCollection('banner-images');
+        }
+
+        return redirect()->route('stores.index')->withMessage('successfully updated');
     }
 
     /**

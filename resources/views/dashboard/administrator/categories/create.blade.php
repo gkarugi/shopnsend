@@ -3,7 +3,7 @@
 @section('page_title','Product Categories')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.categories.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('categories.index') }}" class="btn btn-info">All</a>
 @stop
 
 @section('page')
@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Create Product Category</h3>
                 </div>
-                <form action="{{ route('dashboard.admin.categories.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         @csrf
                         <div class="row">
