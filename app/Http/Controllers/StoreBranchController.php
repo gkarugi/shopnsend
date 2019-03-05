@@ -46,7 +46,7 @@ class StoreBranchController extends Controller
             'name' => $request->get('branch_name'),
         ]);
 
-        return redirect()->route('dashboard.admin.branches.index', $store)->withMessage('successfully created');
+        return redirect()->route('branches.index', $store)->withMessage('successfully created');
     }
 
     /**
@@ -86,7 +86,7 @@ class StoreBranchController extends Controller
             'name' => $request->get('branch_name')
         ]);
 
-        return redirect()->route('dashboard.admin.branches.index', compact('store'))->withMessage('successfully updated');
+        return redirect()->route('branches.index', compact('store'))->withMessage('successfully updated');
     }
 
     /**

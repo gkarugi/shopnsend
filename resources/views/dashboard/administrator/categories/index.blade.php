@@ -3,7 +3,7 @@
 @section('page_title','Product Categories')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.categories.create') }}" class="btn btn-info">Create</a>
+    <a href="{{ route('categories.create') }}" class="btn btn-info">Create</a>
 @stop
 
 @section('page')
@@ -47,7 +47,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="icon" href="{{ route('dashboard.admin.categories.edit', $category) }}">
+                                        <a class="icon" href="{{ route('categories.edit', $category) }}">
                                             <i class="fe fe-edit"></i>
                                         </a>
                                     </td>

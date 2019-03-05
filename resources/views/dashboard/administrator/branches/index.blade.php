@@ -3,7 +3,7 @@
 @section('page_title','Store Branches')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.branches.create', $store) }}" class="btn btn-info">Create</a>
+    <a href="{{ route('branches.create', $store) }}" class="btn btn-info">Create</a>
 @stop
 
 @section('page')
@@ -47,7 +47,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="icon" href="{{ route('dashboard.admin.branches.edit', ['store' => $store, 'branch' => $branch]) }}">
+                                        <a class="icon" href="{{ route('branches.edit', ['store' => $store, 'branch' => $branch]) }}">
                                             <i class="fe fe-edit"></i>
                                         </a>
                                     </td>

@@ -26328,17 +26328,29 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/sass/website/app.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/website/app.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!******************************************************************************!*\
-  !*** multi ./resources/js/manage/app.js ./resources/sass/manage/bundle.scss ***!
-  \******************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** multi ./resources/js/manage/app.js ./resources/sass/manage/bundle.scss ./resources/sass/website/app.scss ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! D:\Freelance\shopnsend\resources\js\manage\app.js */"./resources/js/manage/app.js");
-module.exports = __webpack_require__(/*! D:\Freelance\shopnsend\resources\sass\manage\bundle.scss */"./resources/sass/manage/bundle.scss");
+__webpack_require__(/*! D:\Freelance\shopnsend\resources\sass\manage\bundle.scss */"./resources/sass/manage/bundle.scss");
+module.exports = __webpack_require__(/*! D:\Freelance\shopnsend\resources\sass\website\app.scss */"./resources/sass/website/app.scss");
 
 
 /***/ })
 
-},[[0,"/manage/js/manifest","/manage/js/vendor"]]]);
+},[[0,"/web/js/manifest","/web/js/vendor"]]]);

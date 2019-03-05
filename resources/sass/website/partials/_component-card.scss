@@ -1,0 +1,39 @@
+@mixin hook-card() {
+  border-radius: 8px;
+  background-color: $white;
+  cursor: pointer;
+}
+
+@mixin hook-card-media-top() {
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+}
+
+@mixin hook-card-body() {
+  padding: 20px 20px 10px !important;
+
+  .tagline {
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .card-name-title {
+    font-size: 1.3rem;
+    margin-top: 0;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    word-break: break-all;
+  }
+
+  //.price-wrapper {
+  //  padding-left: 0;
+  //  .product-price {
+  //    font-size: 1.2rem;
+  //    margin-top: 0;
+  //    margin-bottom: 0;
+  //  }
+  //}
+}

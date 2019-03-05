@@ -3,7 +3,7 @@
 @section('page_title','Store Branches')
 
 @section('page_action')
-    <a href="{{ route('dashboard.admin.branches.index', $store) }}" class="btn btn-info">All</a>
+    <a href="{{ route('branches.index', $store) }}" class="btn btn-info">All</a>
 @stop
 
 @section('page')
@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Edit Store Branch - {{ $branch->name }}</h3>
                 </div>
-                <form action="{{ route('dashboard.admin.branches.update', ['store' => $store, 'branch' => $branch]) }}" method="POST">
+                <form action="{{ route('branches.update', ['store' => $store, 'branch' => $branch]) }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 

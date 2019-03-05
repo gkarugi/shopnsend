@@ -69,7 +69,7 @@ class ProductCategoryController extends Controller
                 ->toMediaCollection('banner-images');
         }
 
-        return redirect()->route('dashboard.admin.categories.index')->withMessage('successfully created');
+        return redirect()->route('categories.index')->withMessage('successfully created');
     }
 
     /**
@@ -137,7 +137,7 @@ class ProductCategoryController extends Controller
                 ->toMediaCollection('banner-images');
         }
 
-        return redirect()->route('dashboard.admin.categories.index')->withMessage('successfully updated');
+        return redirect()->route('categories.index')->withMessage('successfully updated');
     }
 
     /**

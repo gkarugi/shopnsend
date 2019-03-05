@@ -5,10 +5,12 @@ namespace App\Models;
 use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Store extends Model
+class Store extends Model implements HasMedia
 {
-    use Sluggable;
+    use Sluggable, HasMediaTrait;
 
     protected $fillable = [
         'name', 'slug', 'user_id', 'active'
@@ -36,5 +38,15 @@ class Store extends Model
     public function branches()
     {
         return $this->hasMany(StoreBranch::class,'store_id');
+    }
+
+    public function groupings()
+    {
+        return $this->hasMany(ProductGrouping::class,'store_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class,'store_id');
     }
 }

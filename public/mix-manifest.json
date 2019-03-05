@@ -1,6 +1,8 @@
 {
     "/manage/js/app.js": "/manage/js/app.js",
     "/manage/css/bundle.css": "/manage/css/bundle.css",
-    "/manage/js/manifest.js": "/manage/js/manifest.js",
-    "/manage/js/vendor.js": "/manage/js/vendor.js"
+    "/web/css/app.css": "/web/css/app.css",
+    "/web/js/app.js": "/web/js/app.js",
+    "/web/js/manifest.js": "/web/js/manifest.js",
+    "/web/js/vendor.js": "/web/js/vendor.js"
 }

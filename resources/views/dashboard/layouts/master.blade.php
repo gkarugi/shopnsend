@@ -13,8 +13,8 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('/manage/js/manifest.js') }}" defer></script>
-    <script src="{{ mix('/manage/js/vendor.js') }}" defer></script>
+    <script src="{{ mix('/web/js/manifest.js') }}" defer></script>
+    <script src="{{ mix('/web/js/vendor.js') }}" defer></script>
     <script src="{{ mix('/manage/js/app.js') }}" defer></script>
 
     <!-- CSS -->
