@@ -15,7 +15,7 @@
                 @foreach($categories as $category)
                     @component('website.components.card')
                         {{ ($category->getFirstMedia('main-images')) ? get_media_url($category->getFirstMedia('main-images')) : '#' }}
-                        @slot('actionLink', route('website.stores.show', $category))
+                        @slot('actionLink', route('website.categories.show', $category))
                         @slot('imageAlt', $category->name)
                         @slot('title', $category->name)
                     @endcomponent
