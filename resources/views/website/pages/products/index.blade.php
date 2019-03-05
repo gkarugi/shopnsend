@@ -15,7 +15,7 @@
                 @foreach($products as $products)
                     @component('website.components.card')
                         {{ ($products->getFirstMedia('main-images')) ? get_media_url($products->getFirstMedia('main-images')) : '#' }}
-                        @slot('actionLink', route('website.stores.show', $products))
+                        @slot('actionLink', route('website.products.show', $products))
                         @slot('imageAlt', $products->name)
                         @slot('title', $products->name)
                     @endcomponent
