@@ -20,7 +20,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="store_name" class="form-label">Grouping Name</label>
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Category Name" value="{{ old('name') }}" required autofocus>
+                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Grouping Name" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                                     @endif

@@ -7,7 +7,7 @@
 
             <div class="d-flex order-lg-2 ml-auto">
                 <div class="nav-item d-none d-md-flex">
-                    <a href="#" class="btn btn-sm btn-outline-primary" target="_blank">Website</a>
+                    <a href="{{ route('website.home') }}" class="btn btn-sm btn-outline-primary" target="_blank">Website</a>
                 </div>
                 <div class="dropdown d-none d-md-flex">
                     <a class="nav-link icon" data-toggle="dropdown">
