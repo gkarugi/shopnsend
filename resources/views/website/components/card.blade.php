@@ -1,15 +1,15 @@
 <div class="uk-width-1-1@s uk-width-1-3@m uk-width-1-4@l">
     <div class="uk-card uk-card-default uk-card-hover">
         <div class="uk-card-media-top">
-            <a href="{!! $actionLink !!}" title="{{ $title }} safari">
+            <a href="{!! $actionLink !!}" title="{{ $title }}">
                 <img class="img" src="{{ $slot }}" alt="{{ $imageAlt }}">
             </a>
         </div>
         <div class="uk-card-body">
             <div>
-                <a class="uk-link-reset" href="{{ $actionLink }}" title="View {{ $title }} safari">
-                    <div class="tagline uk-text-warning">{{ isset($tagline) ? $tagline : ''  }}</div>
-                    <h3 class="card-name-title">{{ $title }}</h3>
+                <a class="uk-link-reset" href="{{ $actionLink }}" title="View {{ $title }}">
+                    <div>{{ isset($tagline) ? $tagline : ''  }}</div>
+                    <h3>{{ $title }}</h3>
                 </a>
             </div>
             {{--<div class="price-wrapper">--}}

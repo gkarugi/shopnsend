@@ -3,7 +3,9 @@
 @section('page_title','Product Categories')
 
 @section('page_action')
-    <a href="{{ route('categories.create') }}" class="btn btn-info">Create</a>
+    @can('create-category')
+        <a href="{{ route('categories.create') }}" class="btn btn-info">Create Category</a>
+    @endcan
 @stop
 
 @section('page')
@@ -41,15 +43,17 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-secondary btn-sm">Branches</a>
+                                        {{--<a href="#" class="btn btn-secondary btn-sm">Branches</a>--}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="icon" href="{{ route('categories.edit', $category) }}">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
+                                        @can('update-category')
+                                            <a class="icon" href="{{ route('categories.edit', $category) }}">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

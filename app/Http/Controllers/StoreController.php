@@ -7,6 +7,8 @@ use App\Http\Requests\EditStoreRequest;
 use App\Models\Store;
 use App\Repositories\Store\StoreRepository;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class StoreController extends Controller
 {
@@ -16,13 +18,15 @@ class StoreController extends Controller
     private $storeRepository;
 
     /**
-     * StoreController constructor.
+     * Instantiate a new PostController instance.
      *
      * @param \App\Repositories\Store\StoreRepository $storeRepository
      */
     public function __construct(StoreRepository $storeRepository)
     {
         $this->storeRepository = $storeRepository;
+        $this->middleware('can:create-store', ['only' => ['create','store']]);
+        $this->middleware('can:update-store', ['only' => ['edit','update']]);
     }
 
     /**
@@ -34,7 +38,7 @@ class StoreController extends Controller
     {
         $stores = Store::all();
 
-        return view('dashboard.administrator.stores.index', compact('stores'));
+        return view('dashboard.stores.index', compact('stores'));
     }
 
     /**
@@ -44,7 +48,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('dashboard.administrator.stores.create');
+        return view('dashboard.stores.create');
     }
 
     /**
@@ -55,31 +59,47 @@ class StoreController extends Controller
      */
     public function store(CreateStoreRequest $request)
     {
-        $user = User::create([
-            'name' => $request->get('owner_name'),
-            'email' => $request->get('owner_email'),
-            'password' => str_random(),
-        ]);
+        DB::beginTransaction();
 
-        $user->roles()->attach(2);
+        try {
+            $user = User::create([
+                'name' => $request->get('owner_name'),
+                'email' => $request->get('owner_email'),
+                'password' => str_random(),
+            ]);
 
-        $store = $user->stores()->create([
-            'name' => $request->get('store_name'),
-        ]);
+            $user->roles()->attach(2);
 
-        if ($request->hasFile('main_image')) {
-            $store->addMediaFromRequest('main_image')
-                ->usingName($request->get('name') . ' main image')
-                ->usingFileName($store->slug . '-main-image.' . $request->file('main_image')->getClientOriginalExtension())
-                ->toMediaCollection('main-images');
+            $store = $user->stores()->create([
+                'name' => $request->get('store_name'),
+                'email' => $request->get('store_email'),
+            ]);
+
+            $user->update([
+                'store_id' => $store->id,
+            ]);
+
+            if ($request->hasFile('main_image')) {
+                $store->addMediaFromRequest('main_image')
+                    ->usingName($request->get('name') . ' main image')
+                    ->usingFileName($store->slug . '-main-image.' . $request->file('main_image')->getClientOriginalExtension())
+                    ->toMediaCollection('main-images');
+            }
+
+            if ($request->hasFile('banner_image')) {
+                $store->addMediaFromRequest('banner_image')
+                    ->usingName($request->get('name') . ' banner')
+                    ->usingFileName($store->slug . '-banner-image.' . $request->file('banner_image')->getClientOriginalExtension())
+                    ->toMediaCollection('banner-images');
+            }
+
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput(Input::all())->withError('Error occurred when creating the store');
         }
 
-        if ($request->hasFile('banner_image')) {
-            $store->addMediaFromRequest('banner_image')
-                ->usingName($request->get('name') . ' banner')
-                ->usingFileName($store->slug . '-banner-image.' . $request->file('banner_image')->getClientOriginalExtension())
-                ->toMediaCollection('banner-images');
-        }
 
         return redirect()->route('stores.index')->withMessage('successfully created');
     }
@@ -103,7 +123,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        return view('dashboard.administrator.stores.edit', compact('store'));
+        return view('dashboard.stores.edit', compact('store'));
     }
 
     /**

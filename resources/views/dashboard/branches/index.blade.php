@@ -3,7 +3,10 @@
 @section('page_title','Store Branches')
 
 @section('page_action')
-    <a href="{{ route('branches.create', $store) }}" class="btn btn-info">Create</a>
+    @can('create-branch')
+        <a href="{{ route('branches.create', $store) }}" class="btn btn-info">Create Branch </a> &nbsp
+    @endcan
+    <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
 @stop
 
 @section('page')
@@ -41,15 +44,17 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-secondary btn-sm">Branches</a>
+                                        <a href="{{ route('cashiers.index',['store' => $store,'branch' => $branch]) }}" class="btn btn-secondary btn-sm">Cashiers</a>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="icon" href="{{ route('branches.edit', ['store' => $store, 'branch' => $branch]) }}">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
+                                        @can('update-branch')
+                                            <a class="icon" href="{{ route('branches.edit', ['store' => $store, 'branch' => $branch]) }}">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

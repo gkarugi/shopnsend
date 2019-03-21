@@ -3,7 +3,7 @@
 @section('page_title','Stores')
 
 @section('page_action')
-    <a href="{{ route('stores.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
 @stop
 
 @section('page')
@@ -25,6 +25,15 @@
                                     <input type="text" id="store_name" name="store_name" class="form-control {{ $errors->has('store_name') ? ' is-invalid' : '' }}" placeholder="Store Name" value="{{ $store->name }}" required autofocus>
                                     @if ($errors->has('store_name'))
                                         <div class="invalid-feedback">{{ $errors->first('store_name') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="store_email" class="form-label">Store E-mail</label>
+                                    <input type="email" id="store_email" name="store_email" class="form-control {{ $errors->has('store_email') ? ' is-invalid' : '' }}" placeholder="Store E-mail" value="{{ $store->name }}" required>
+                                    @if ($errors->has('store_email'))
+                                        <div class="invalid-feedback">{{ $errors->first('store_email') }}</div>
                                     @endif
                                 </div>
                             </div>

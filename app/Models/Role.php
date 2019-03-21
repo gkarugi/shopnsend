@@ -17,6 +17,16 @@ class Role extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'permissions' => 'array'
+    ];
+
+
+    /**
      * Roles can belong to many users
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

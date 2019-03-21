@@ -1,9 +1,13 @@
 @extends('dashboard.layouts.app')
 
-@section('page_title','Stores')
+@section('page_title','Store Branch Cashiers')
 
 @section('page_action')
-    <a href="{{ route('stores.create') }}" class="btn btn-info">Create</a>
+    @can('create-cashier')
+        <a href="{{ route('cashiers.create', ['store' => $store, 'branch' => $branch]) }}" class="btn btn-info">Create Cashier</a> &nbsp
+    @endcan
+
+    <a href="{{ route('branches.index', ['store' => $store]) }}" class="btn btn-info">All Branches</a>
 @stop
 
 @section('page')
@@ -11,49 +15,42 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Stores</h3>
+                    <h3 class="card-title">Store Branch Cashiers</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                             <tr>
-                                <th class="w-1">Store ID.</th>
+                                <th class="w-1">Branch ID.</th>
                                 <th>Name</th>
-                                <th>Owner</th>
                                 <th>Created</th>
+                                <th>Given access at</th>
+                                <th>Settings updated at</th>
                                 <th>Status</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($stores as $store)
+                            @foreach($cashiers as $cashier)
                                 <tr>
-                                    <td><span class="text-muted">{{ $store->id }}</span></td>
-                                    <td>{{ $store->name }}</td>
+                                    <td><span class="text-muted">{{ $cashier->user->id }}</span></td>
+                                    <td>{{ $cashier->user->name }}</td>
                                     <td>
-                                        <a href="#" class="text-inherit">{{ $store->owner->name }}</a>
+                                        {{ $cashier->user->created_at->toFormattedDateString() }}
                                     </td>
                                     <td>
-                                        {{ $store->created_at->toFormattedDateString() }}
+                                        {{ $cashier->created_at->toFormattedDateString() }}
                                     </td>
                                     <td>
-                                        @if($store->active)
+                                        {{ $cashier->updated_at->toFormattedDateString() }}
+                                    </td>
+                                    <td>
+                                        @if($cashier->active)
                                             <span class="status-icon bg-success"></span> active
                                         @else
                                             <span class="status-icon bg-danger"></span> inactive
                                         @endif
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="{{ route('branches.index', $store) }}" class="btn btn-secondary btn-sm">Branches</a>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a class="icon" href="{{ route('stores.edit', $store) }}">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

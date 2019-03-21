@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**
@@ -33,3 +32,4 @@ const app = new Vue({
 });
 
 require('uikit/dist/js/uikit');
+require('uikit/dist/js/uikit-icons');
