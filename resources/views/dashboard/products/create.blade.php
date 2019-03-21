@@ -66,7 +66,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="main_image" class="form-label">Main Image</label>
-                                    <input type="file" id="main_image" name="main_image" class="form-control {{ $errors->has('main_image') ? ' is-invalid' : '' }}" value="{{ old('main_image') }}" required>
+                                    <input type="file" id="main_image" name="main_image" class="form-control {{ $errors->has('main_image') ? ' is-invalid' : '' }}" value="{{ old('main_image') }}">
                                     @if ($errors->has('main_image'))
                                         <div class="invalid-feedback">{{ $errors->first('main_image') }}</div>
                                     @endif
