@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\StoreScope;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -12,8 +13,19 @@ class ProductGrouping extends Model
     use Sluggable;
 
     protected $fillable = [
-        'name', 'slug', 'description'
+        'name', 'store_id', 'slug', 'description'
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new StoreScope());
+    }
 
     /**
      * Return the sluggable configuration array for this model.

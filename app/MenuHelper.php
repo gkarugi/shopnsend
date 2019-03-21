@@ -28,13 +28,19 @@ class MenuHelper
             $menu = collect([
                 ['route' => '#', 'icon' => '', 'text' => 'Dashboard'],
                 ['route' => '#', 'text' => 'Catalogue','icon' => '','children' => [
+                    ['route' => route('stores.index'), 'text' => 'Stores'],
                     ['route' => route('productGroupings.index'), 'text' => 'Product Groupings'],
                     ['route' => route('products.index'), 'text' => 'Products'],
                 ]],
                 ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
-                    ['route' => '#','text' => 'Orders'],
+                    ['route' => route('orders.index', auth()->user()->stores()->first()),'text' => 'Orders'],
                     ['route' => '#', 'text' => 'Customers'],
                 ]],
+            ]);
+        }  elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('cashier')) {
+            //Dashboard menu items for cashier
+            $menu = collect([
+                ['route' => route('pos.index'), 'icon' => '', 'text' => 'POS'],
             ]);
         } else {
             //Dashboard menu items for any one else with a different role
@@ -49,12 +55,9 @@ class MenuHelper
     public static function website($returnArray = false, $guard = null)
     {
         $menu = collect([
-            ['route' => route('website.home'), 'text' => 'Home'],
+            ['route' => route('website.stores.index'), 'text' => 'Stores'],
             ['route' => route('website.products.index'), 'text' => 'Products'],
             ['route' => route('website.categories.index'), 'text' => 'Categories'],
-            ['route' => route('website.stores.index'), 'text' => 'Stores'],
-            ['route' => route('website.about'), 'text' => 'About'],
-            ['route' => route('website.contact'), 'text' => 'Contact Us'],
         ]);
 
         return $returnArray ? $menu : json_encode($menu);

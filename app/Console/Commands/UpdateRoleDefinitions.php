@@ -45,7 +45,7 @@ class UpdateRoleDefinitions extends Command
                 [
                     'name' => $role['name'],
                     'slug' => $role['slug'],
-                    'permissions' => json_encode($role['permissions']),
+                    'permissions' => $role['permissions'],
                 ]
             );
         }

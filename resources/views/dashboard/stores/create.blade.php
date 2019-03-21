@@ -1,9 +1,9 @@
 @extends('dashboard.layouts.app')
 
-@section('page_title','Product Categories')
+@section('page_title','Stores')
 
 @section('page_action')
-    <a href="{{ route('categories.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
 @stop
 
 @section('page')
@@ -11,37 +11,27 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit Product Category - {{ $category->name }}</h3>
+                    <h3 class="card-title">Create Store</h3>
                 </div>
-                <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="_method" value="PUT">
-
+                <form action="{{ route('stores.store') }}" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="store_name" class="form-label">Category Name</label>
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Category Name" value="{{ $category->name }}" required autofocus>
-                                    @if ($errors->has('name'))
-                                        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                    <label for="store_name" class="form-label">Store Name</label>
+                                    <input type="text" id="store_name" name="store_name" class="form-control {{ $errors->has('store_name') ? ' is-invalid' : '' }}" placeholder="Store Name" value="{{ old('store_name') }}" required autofocus>
+                                    @if ($errors->has('store_name'))
+                                        <div class="invalid-feedback">{{ $errors->first('store_name') }}</div>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="parent_category" class="form-label">Parent Category</label>
-                                    <select name="parent_category" id="parent_category"  class="form-control {{ $errors->has('parent_category') ? ' is-invalid' : '' }}">
-                                        <option value="0">Parent Category</option>
-                                        @foreach($categories as $cat)
-                                            @if($cat->id == $category->id)
-                                                @break
-                                            @endif
-                                            <option value="{{ $cat->id }}" @if($category->isChildOf($cat)) selected @endif>{{ $cat->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('parent_category'))
-                                        <div class="invalid-feedback">{{ $errors->first('parent_category') }}</div>
+                                    <label for="store_email" class="form-label">Store E-mail</label>
+                                    <input type="email" id="store_email" name="store_email" class="form-control {{ $errors->has('store_email') ? ' is-invalid' : '' }}" placeholder="Store E-mail" value="{{ old('store_email') }}" required>
+                                    @if ($errors->has('store_email'))
+                                        <div class="invalid-feedback">{{ $errors->first('store_email') }}</div>
                                     @endif
                                 </div>
                             </div>
@@ -65,10 +55,19 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea id="description" name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}">{{ $category->description }}</textarea>
-                                    @if ($errors->has('description'))
-                                        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                                    <label for="owner_name" class="form-label">Owner Name</label>
+                                    <input type="text" id="owner_name" name="owner_name" class="form-control {{ $errors->has('owner_name') ? ' is-invalid' : '' }}" placeholder="Owner Name" value="{{ old('owner_name') }}" required>
+                                    @if ($errors->has('owner_name'))
+                                        <div class="invalid-feedback">{{ $errors->first('owner_name') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="owner_email" class="form-label">Owner E-mail</label>
+                                    <input type="email" id="owner_email" name="owner_email" class="form-control {{ $errors->has('owner_email') ? ' is-invalid' : '' }}" placeholder="Owner E-mail" value="{{ old('owner_email') }}" required>
+                                    @if ($errors->has('owner_email'))
+                                        <div class="invalid-feedback">{{ $errors->first('owner_email') }}</div>
                                     @endif
                                 </div>
                             </div>

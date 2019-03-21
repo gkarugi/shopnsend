@@ -39,5 +39,8 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
-
+    'africastalking' => [
+        'username' => env('AFRICAS_TALKING_USERNAME'),
+        'key' => env('AFRICAS_TALKING_KEY'),
+    ],
 ];

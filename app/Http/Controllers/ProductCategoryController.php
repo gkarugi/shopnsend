@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 class ProductCategoryController extends Controller
 {
     /**
+     * Instantiate a new PostController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('can:create-category', ['only' => ['create','store']]);
+        $this->middleware('can:update-category', ['only' => ['edit','update']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +29,7 @@ class ProductCategoryController extends Controller
     {
         $categories = ProductCategory::all();
 
-        return view('dashboard.administrator.categories.index', compact('categories'));
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -30,7 +41,7 @@ class ProductCategoryController extends Controller
     {
         $categories = ProductCategory::all();
 
-        return view('dashboard.administrator.categories.create', compact('categories'));
+        return view('dashboard.categories.create', compact('categories'));
     }
 
     /**
@@ -93,7 +104,7 @@ class ProductCategoryController extends Controller
     {
         $categories = ProductCategory::all();
 
-        return view('dashboard.administrator.categories.edit', compact('category','categories'));
+        return view('dashboard.categories.edit', compact('category','categories'));
     }
 
     /**

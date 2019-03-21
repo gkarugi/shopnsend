@@ -3,7 +3,7 @@
 @section('page_title','Products')
 
 @section('page_action')
-    <a href="{{ route('products.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('products.index') }}" class="btn btn-info">All Products</a>
 @stop
 
 @section('page')
@@ -52,7 +52,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="grouping" class="form-label">Grouping</label>
-                                    <select name="grouping" id="grouping"  class="form-control {{ $errors->has('grouping') ? ' is-invalid' : '' }}">
+                                    <select name="grouping" id="grouping"  class="form-control {{ $errors->has('grouping') ? ' is-invalid' : '' }}" required>
                                         <option value="">Choose Grouping</option>
                                         @foreach($groupings as $grouping)
                                             <option value="{{ $grouping->id }}" @if(old('grouping') == $grouping->id) selected @endif>{{ $grouping->name }}</option>

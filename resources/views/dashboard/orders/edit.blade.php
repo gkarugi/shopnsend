@@ -3,7 +3,7 @@
 @section('page_title','Store Branches')
 
 @section('page_action')
-    <a href="{{ route('branches.index', $store) }}" class="btn btn-info">All</a>
+    <a href="{{ route('branches.index', $store) }}" class="btn btn-info">All Branches</a>
 @stop
 
 @section('page')

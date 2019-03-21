@@ -10,6 +10,17 @@ use App\Models\StoreBranch;
 class StoreBranchController extends Controller
 {
     /**
+     * Instantiate a new PostController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('can:create-branch', ['only' => ['create','store']]);
+        $this->middleware('can:update-branch', ['only' => ['edit','update']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param \App\Models\Store $store
@@ -19,7 +30,7 @@ class StoreBranchController extends Controller
     {
         $branches = $store->branches;
 
-        return view('dashboard.administrator.branches.index', compact('branches', 'store'));
+        return view('dashboard.branches.index', compact('branches', 'store'));
     }
 
     /**
@@ -30,7 +41,7 @@ class StoreBranchController extends Controller
      */
     public function create(Store $store)
     {
-        return view('dashboard.administrator.branches.create', compact('store'));
+        return view('dashboard.branches.create', compact('store'));
     }
 
     /**
@@ -69,7 +80,7 @@ class StoreBranchController extends Controller
      */
     public function edit(Store $store, StoreBranch $branch)
     {
-        return view('dashboard.administrator.branches.edit', compact('store', 'branch'));
+        return view('dashboard.branches.edit', compact('store', 'branch'));
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('page_title','Store Branches')
 
 @section('page_action')
-    <a href="{{ route('branches.index', $store) }}" class="btn btn-info">All</a>
+    <a href="{{ route('branches.index', $store) }}" class="btn btn-info">All Branches</a>
 @stop
 
 @section('page')
@@ -11,16 +11,18 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Create Store Branch</h3>
+                    <h3 class="card-title">Edit Store Branch - {{ $branch->name }}</h3>
                 </div>
-                <form action="{{ route('branches.store', $store) }}" method="POST">
+                <form action="{{ route('branches.update', ['store' => $store, 'branch' => $branch]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
+
                     <div class="card-body">
-                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="branch_name" class="form-label">Branch Name</label>
-                                    <input type="text" id="branch_name" name="branch_name" class="form-control {{ $errors->has('branch_name') ? ' is-invalid' : '' }}" placeholder="Branch Name" value="{{ old('branch_name') }}" required autofocus>
+                                    <label for="store_name" class="form-label">Branch Name</label>
+                                    <input type="text" id="branch_name" name="branch_name" class="form-control {{ $errors->has('branch_name') ? ' is-invalid' : '' }}" placeholder="Branch Name" value="{{ $branch->name }}" required autofocus>
                                     @if ($errors->has('branch_name'))
                                         <div class="invalid-feedback">{{ $errors->first('branch_name') }}</div>
                                     @endif

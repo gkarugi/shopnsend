@@ -3,7 +3,7 @@
 @section('page_title','Product Categories')
 
 @section('page_action')
-    <a href="{{ route('categories.index') }}" class="btn btn-info">All</a>
+    <a href="{{ route('categories.index') }}" class="btn btn-info">All Categories</a>
 @stop
 
 @section('page')

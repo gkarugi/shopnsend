@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Role;
 use App\Models\Store;
+use App\Models\StoreBranchCashier;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'store_id', 'name', 'email', 'password',
     ];
 
     /**
@@ -84,5 +85,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function stores()
     {
         return $this->hasMany(Store::class,'user_id');
+    }
+
+    public function cashier()
+    {
+        return $this->hasOne(StoreBranchCashier::class);
     }
 }

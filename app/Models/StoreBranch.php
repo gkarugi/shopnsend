@@ -31,4 +31,9 @@ class StoreBranch extends Model
     {
         return $this->belongsTo(Store::class,'store_id');
     }
+
+    public function cashiers()
+    {
+        return $this->hasMany(StoreBranchCashier::class,'store_branch_id');
+    }
 }

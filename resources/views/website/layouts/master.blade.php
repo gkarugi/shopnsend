@@ -11,11 +11,6 @@
 
         <title>@yield('page_title') | {{ config('app.name', 'Shop and Send') }}</title>
 
-        <!-- Scripts -->
-        <script src="{{ mix('/web/js/manifest.js') }}" defer></script>
-        <script src="{{ mix('/web/js/vendor.js') }}" defer></script>
-        <script src="{{ asset('/web/js/app.js') }}" defer></script>
-
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -50,12 +45,28 @@
                 !!};
         </script>
 
+
+
         @stack('styles')
 
     </head>
     <body>
 
         @yield('mainLayout')
+
+        <!-- Scripts -->
+        <script src="{{ mix('/web/js/manifest.js') }}"></script>
+        <script src="{{ mix('/web/js/vendor.js') }}"></script>
+        <script src="{{ asset('/web/js/app.js') }}"></script>
+
+        @if(session()->has('cartAdd'))
+            <script>
+                $(window).on('load', function() {
+                    console.log('cart');
+                    UIkit.offcanvas('#cart-offcanvas').show();
+                });
+            </script>
+        @endif
 
         @stack('scripts')
     </body>
