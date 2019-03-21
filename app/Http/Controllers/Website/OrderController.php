@@ -140,14 +140,13 @@ class OrderController extends Controller
         $data = $request->all();
 
         $order = Order::where('number',$data['id'])->first();
-        $invoice = Invoice::where('invoice_number',$data['ivm'])->first();
 
         DB::beginTransaction();
 
         try {
             $ipayTxn = new IpayTransaction();
             $ipayTxn->order_id = $order->id;
-            $ipayTxn->invoice_id = $invoice->id;
+            $ipayTxn->invoice_id = $order->invoice->id;
             $ipayTxn->invoice_number = $data['ivm'];
             $ipayTxn->order_number = $data['id'];
             $ipayTxn->amount = $data['mc'];
