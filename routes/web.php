@@ -16,9 +16,11 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
     Route::resource('stores', 'StoreController');
+    Route::post('stores/{store}/feature', 'StoreController@feature')->name('stores.feature');
     Route::resource('stores/{store}/branches', 'StoreBranchController');
     Route::resource('stores/{store}/branches/{branch}/cashiers', 'StoreBranchCashiersController');
     Route::resource('categories', 'ProductCategoryController');
+    Route::post('categories/{category}/feature', 'ProductCategoryController@feature')->name('categories.feature');
     Route::resource('productGroupings', 'ProductGroupingController');
     Route::resource('products', 'ProductController');
     Route::resource('stores/{store}/orders', 'OrderController')->only(['index','show']);

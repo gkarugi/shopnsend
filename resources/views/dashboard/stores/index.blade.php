@@ -24,6 +24,7 @@
                                 <th>Owner</th>
                                 <th>Created</th>
                                 <th>Status</th>
+                                <th>Featured</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -46,11 +47,23 @@
                                             <span class="status-icon bg-danger"></span> inactive
                                         @endif
                                     </td>
+                                    <td>
+                                        @if($store->featured)
+                                            <span class="status-icon bg-success"></span> featured
+                                        @else
+                                            <span class="status-icon bg-danger"></span> Unfeatured
+                                        @endif
+                                    </td>
                                     <td class="text-right">
                                         <a href="{{ route('branches.index', $store) }}" class="btn btn-secondary btn-sm">Branches</a>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                        </div>
+                                        @can('update-store')
+                                            <a href="{{ route('stores.feature', $store) }}" class="btn btn-secondary btn-sm"
+                                               onclick="event.preventDefault();
+                                               document.getElementById('feature-form-{{ $store->id }}').submit();">@if($store->featured) Unfeature @else Feature @endif</a>
+                                            <form id="feature-form-{{ $store->id }}" action="{{ route('stores.feature', $store) }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endcan
                                     </td>
                                     <td>
                                         @can('update-store')

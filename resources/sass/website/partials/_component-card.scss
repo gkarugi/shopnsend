@@ -1,32 +1,61 @@
 @mixin hook-card() {
-  border-radius: 8px;
-  background-color: $white;
-  cursor: pointer;
+    border-radius: 4px;
+    //box-shadow: 0 2px 2px 0 rgba(0,35,70,0.2);
+    transition: all .25s;
+    background-color: $white;
+    cursor: pointer;
+}
+
+@mixin hook-card-hover() {
+    cursor: pointer;
+    box-shadow: 0 16px 64px 0 rgba(0,35,70,0.2);
+    z-index: 1;
+    transform: translateY(-1px);
 }
 
 @mixin hook-card-media-top() {
   width: 100%;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   overflow: hidden;
 }
 
-@mixin hook-card-body() {
-  padding: 20px 20px 10px !important;
+@mixin hook-card-body()
+{
+    padding: 1em !important;
+    margin: 0;
+}
 
-  .tagline {
-    p {
-      margin-bottom: 5px;
+@mixin hook-card-footer()
+{
+    background-color: rgb(247, 249, 251);
+    padding: 1em !important;
+    border-radius: 0 0 4px 4px;
+    border-top: none !important;
+}
+
+.tm-cart-offcanvas{
+    .uk-card-footer {
+        background: none;
     }
-  }
-
-  .card-name-title {
-    font-size: 1.3rem;
-    margin-top: 0;
-    padding-right: 20px;
-    margin-bottom: 10px;
-    word-break: break-all;
-  }
+}
+//
+//@mixin hook-card-body() {
+//  padding: 20px 20px 10px !important;
+//
+//  .tagline {
+//    p {
+//      margin-bottom: 5px;
+//    }
+//  }
+//
+//  .card-name-title {
+//    font-size: 1.3rem;
+//    margin-top: 0;
+//    padding-right: 20px;
+//    margin-bottom: 10px;
+//    word-break: break-all;
+//  }
 
   //.price-wrapper {
   //  padding-left: 0;
@@ -36,4 +65,4 @@
   //    margin-bottom: 0;
   //  }
   //}
-}
+//}

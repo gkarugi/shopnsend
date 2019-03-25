@@ -42,7 +42,6 @@ return [
             'name' => 'Customer',
             'slug' => 'customer',
             'permissions' => [
-
             ],
         ],
         'cashier' => [

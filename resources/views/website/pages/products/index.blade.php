@@ -1,13 +1,8 @@
 @extends('website.layouts.app')
 
-@section('page_title', 'Our Packages')
+@section('page_title', 'Menus')
 
 @section('content')
-    <div class="uk-section uk-section-muted uk-section-small" data-src="{{ asset('foggy_birds.png') }}" uk-img>
-        <div class="uk-container uk-text-center">
-            <h3>Products</h3>
-        </div>
-    </div>
 
     <div class="uk-section">
         <div class="uk-container">

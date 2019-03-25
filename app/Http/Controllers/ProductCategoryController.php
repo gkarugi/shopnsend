@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
     public function __construct()
     {
         $this->middleware('can:create-category', ['only' => ['create','store']]);
-        $this->middleware('can:update-category', ['only' => ['edit','update']]);
+        $this->middleware('can:update-category', ['only' => ['edit','update','feature']]);
     }
 
     /**
@@ -160,5 +160,13 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         //
+    }
+
+    public function feature(ProductCategory $category)
+    {
+        $category->featured = ($category->featured) ? false : true;
+        $category->save();
+
+        return redirect()->back()->withMessage('successful.');
     }
 }

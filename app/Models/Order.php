@@ -20,9 +20,4 @@ class Order extends Model
     {
         return $this->hasOne(Invoice::class,'order_id');
     }
-
-    public function currentStoreOrderItems()
-    {
-        return $this->hasManyThrough(OrderItem::class,Product::class,'store_id','product_id');
-    }
 }

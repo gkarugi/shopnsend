@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
+.tm-cart-offcanvas .uk-card-footer {
+  background: none;
+}
+
 .bg-dark {
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.55);
+}
+
+.bg-yellow-dark {
+  box-shadow: inset 0 0 0 1000px rgba(252, 165, 43, 0.7);
 }
 
 /* ========================================================================
@@ -3542,7 +3550,10 @@ select.uk-form-width-xsmall {
 .uk-card {
   position: relative;
   box-sizing: border-box;
-  transition: box-shadow 0.1s ease-in-out;
+  border-radius: 4px;
+  transition: all 0.25s;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 /* Sections
@@ -3550,6 +3561,8 @@ select.uk-form-width-xsmall {
 
 .uk-card-body {
   padding: 30px 30px;
+  padding: 1em !important;
+  margin: 0;
 }
 
 .uk-card-header {
@@ -3558,6 +3571,10 @@ select.uk-form-width-xsmall {
 
 .uk-card-footer {
   padding: 15px 30px;
+  background-color: #f7f9fb;
+  padding: 1em !important;
+  border-radius: 0 0 4px 4px;
+  border-top: none !important;
 }
 
 /* Desktop and bigger */
@@ -3614,6 +3631,15 @@ select.uk-form-width-xsmall {
  * Implemented by the theme
  */
 
+.uk-card-media-top,
+.uk-grid-stack > .uk-card-media-left,
+.uk-grid-stack > .uk-card-media-right {
+  width: 100%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  overflow: hidden;
+}
+
 /* Title
  ========================================================================== */
 
@@ -3645,7 +3671,11 @@ select.uk-form-width-xsmall {
 
 .uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):hover {
   background: #fff;
-  box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  box-shadow: 0 16px 64px 0 rgba(0, 35, 70, 0.2);
+  z-index: 1;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 /* Style modifiers

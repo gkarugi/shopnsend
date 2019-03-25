@@ -140,13 +140,14 @@ class OrderController extends Controller
         $data = $request->all();
 
         $order = Order::where('number',$data['id'])->first();
+        $invoice = $order->invoice;
 
         DB::beginTransaction();
 
         try {
             $ipayTxn = new IpayTransaction();
             $ipayTxn->order_id = $order->id;
-            $ipayTxn->invoice_id = $order->invoice->id;
+            $ipayTxn->invoice_id = $invoice->id;
             $ipayTxn->invoice_number = $data['ivm'];
             $ipayTxn->order_number = $data['id'];
             $ipayTxn->amount = $data['mc'];
@@ -198,6 +199,7 @@ class OrderController extends Controller
 
         event(new OrderPaidEvent($order));
 
-        return redirect()->route('website.home')->withMessage('Order completed successfully');
+        LaraCart::emptyCart();
+        return redirect()->route('website.home')->withSuccess('Order completed successfully');
     }
 }

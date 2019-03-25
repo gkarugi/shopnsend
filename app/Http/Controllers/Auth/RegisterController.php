@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Role;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -74,5 +75,17 @@ class RegisterController extends Controller
         $user->roles()->attach(3);
 
         return $user;
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        session()->flash('success', 'Hey, Your account has been created successfully. Check your email for verification!');
     }
 }
