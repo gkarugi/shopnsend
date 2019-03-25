@@ -68,6 +68,44 @@
             </script>
         @endif
 
+        @if(session()->has('success'))
+            <script>
+                UIkit.notification({
+                    message: '{{ session()->get('success') }}',
+                    status: 'primary',
+                    pos: 'top-center',
+                    timeout: 5000
+                });
+            </script>
+        @elseif(session()->has('warning'))
+            <script>
+                UIkit.notification({
+                    message: '{{ session()->get('warning') }}',
+                    status: 'warning',
+                    pos: 'top-center',
+                    timeout: 5000
+                });
+            </script>
+        @elseif(session()->has('error'))
+            <script>
+                UIkit.notification({
+                    message: '{{ session()->get('error') }}',
+                    status: 'danger',
+                    pos: 'top-center',
+                    timeout: 5000
+                });
+            </script>
+        @elseif(session()->has('information'))
+            <script>
+                UIkit.notification({
+                    message: '{{ session()->get('information') }}',
+                    status: 'primary',
+                    pos: 'top-center',
+                    timeout: 5000
+                });
+            </script>
+        @endif
+
         @stack('scripts')
     </body>
 </html>

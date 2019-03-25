@@ -42,38 +42,32 @@
                 <div class="uk-navbar-right">
                     @guest
                         <div class="uk-navbar-item uk-visible@m">
-                            <a href="#" class="uk-button uk-button-danger tm-button-default uk-text-uppercase uk-text-bold">Login / Register</a>
+                            <a href="#login-register" class="uk-button uk-button-danger tm-button-default uk-text-uppercase uk-text-bold" uk-toggle>Login / Register</a>
+                            @include('website.includes.login-register')
                         </div>
-                    @else
-
                     @endguest
                     <ul class="uk-navbar-nav">
-                        <li>
-                            {{--<a href="#" class="uk-navbar-toggle uk-navbar-toggle-icon uk-icon uk-open" aria-expanded="false">--}}
-                                {{--@auth Account @endauth--}}
-                            {{--</a>--}}
-                            {{--<div class="uk-navbar-dropdown">--}}
-                                {{--<ul class="uk-nav uk-navbar-dropdown-nav">--}}
-                                    {{--@guest--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ route('login') }}">Login</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a href="{{ route('register') }}">Register</a>--}}
-                                        {{--</li>--}}
-                                    {{--@endguest--}}
-                                    {{--<li class="uk-nav-divider"></li>--}}
-                                    {{--@auth--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span data-uk-icon="icon: sign-out"></span> Logout</a>--}}
-                                    {{--</li>--}}
-                                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                        {{--@csrf--}}
-                                    {{--</form>--}}
-                                    {{--@endauth--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        </li>
+                        @auth
+                            <li>
+                                <a href="#" class="uk-navbar-toggle uk-navbar-toggle-icon uk-icon uk-open uk-icon" aria-expanded="false">
+                                    <i uk-icon="icon: user"></i> &nbsp; Account
+                                </a>
+                                <div class="uk-navbar-dropdown"  uk-dropdown="mode: click">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href=""><span data-uk-icon="icon: list"></span> &nbsp;    My Orders</a>
+                                        </li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li>
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span data-uk-icon="icon: sign-out"></span> &nbsp; Logout</a>
+                                        </li>
+                                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endauth
                         <li>
                             <a href="#cart-offcanvas" class="uk-icon" aria-expanded="false" uk-toggle>
                                 <i uk-icon="icon: cart"></i> &nbsp; Cart
@@ -187,7 +181,7 @@
 
 <!-- This is the off-canvas -->
 <div id="cart-offcanvas" uk-offcanvas="overlay: true; flip: true">
-    <aside class="uk-offcanvas-bar uk-padding-remove uk-offcanvas-bar-animation uk-offcanvas-slide">
+    <aside class="uk-offcanvas-bar uk-padding-remove uk-offcanvas-bar-animation uk-offcanvas-slide tm-cart-offcanvas">
         <div class="uk-card uk-card-secondary uk-card-small uk-height-1-1 uk-flex uk-flex-column tm-shadow-remove">
             <header class="uk-card-header uk-flex uk-flex-middle">
                 <div class="uk-grid-small uk-flex-1 uk-grid" uk-grid="">

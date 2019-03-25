@@ -1,6 +1,6 @@
-@extends('website.layouts.app')
+@extends('website.layouts.landing')
 
-@section('page_title', 'Our Packages')
+@section('page_title', $store->name)
 
 @section('content')
     <div class="uk-section uk-section-muted uk-section uk-padding-remove-bottom uk-background-cover uk-background-norepeat bg-dark" data-src="{{ get_media_url($store->getFirstMedia('banner-images')) }}" uk-img>
@@ -61,7 +61,9 @@
                                             </form>
                                         </div>
                                     </dl>
-                                    <hr>
+                                    @if(!$loop->last)
+                                        <hr>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

@@ -26,7 +26,7 @@ class StoreController extends Controller
     {
         $this->storeRepository = $storeRepository;
         $this->middleware('can:create-store', ['only' => ['create','store']]);
-        $this->middleware('can:update-store', ['only' => ['edit','update']]);
+        $this->middleware('can:update-store', ['only' => ['edit','update','feature']]);
     }
 
     /**
@@ -169,5 +169,13 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         //
+    }
+
+    public function feature(Store $store)
+    {
+        $store->featured = ($store->featured) ? false : true;
+        $store->save();
+
+        return redirect()->back()->withMessage('successful.');
     }
 }

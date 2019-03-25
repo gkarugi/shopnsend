@@ -23,6 +23,7 @@
                                 <th>Name</th>
                                 <th>Created</th>
                                 <th>Status</th>
+                                <th>Featured</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -42,8 +43,23 @@
                                             <span class="status-icon bg-danger"></span> inactive
                                         @endif
                                     </td>
+                                    <td>
+                                        @if($category->featured)
+                                            <span class="status-icon bg-success"></span> featured
+                                        @else
+                                            <span class="status-icon bg-danger"></span> Unfeatured
+                                        @endif
+                                    </td>
                                     <td class="text-right">
                                         {{--<a href="#" class="btn btn-secondary btn-sm">Branches</a>--}}
+                                        @can('update-category')
+                                            <a href="{{ route('categories.feature', $category) }}" class="btn btn-secondary btn-sm"
+                                               onclick="event.preventDefault();
+                                                   document.getElementById('feature-form-{{ $category->id }}').submit();">@if($category->featured) Unfeature @else Feature @endif</a>
+                                            <form id="feature-form-{{ $category->id }}" action="{{ route('categories.feature', $category) }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endcan
                                         <div class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                                         </div>

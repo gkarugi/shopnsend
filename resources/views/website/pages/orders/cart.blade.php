@@ -2,6 +2,12 @@
 
 @section('page_title', 'My Cart')
 
+@section('page_title_action')
+    <a class="uk-link-muted uk-text-small" href="{{ route('website.cart') }}">
+        <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-left; ratio: .75;"></span> Return to cart
+    </a>
+@stop
+
 @section('content')
     <div class="uk-section">
         <div class="uk-container">

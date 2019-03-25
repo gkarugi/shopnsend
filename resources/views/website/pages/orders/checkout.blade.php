@@ -3,13 +3,6 @@
 @section('page_title', 'My Cart')
 
 @section('content')
-    <section class="uk-section-small uk-text-center">
-        <a class="uk-link-muted uk-text-small" href="{{ route('website.cart') }}">
-            <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-left; ratio: .75;"></span> Return to cart
-        </a>
-        <h1 class="uk-margin-small-top uk-margin-remove-bottom">Checkout</h1>
-    </section>
-
     <div class="uk-container">
         <div class="uk-grid-medium uk-child-width-1-1 uk-grid-stack" uk-grid>
             <section class="uk-grid-margin">
