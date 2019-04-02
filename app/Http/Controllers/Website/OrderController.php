@@ -75,6 +75,9 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
+        if (count(LaraCart::getItems()) == 0) {
+            return redirect()->back()->withError('unsuccessful. Your Cart is empty');
+        }
         DB::beginTransaction();
 
         try{

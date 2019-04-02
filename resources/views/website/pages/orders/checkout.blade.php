@@ -53,7 +53,7 @@
                                                     <input class="uk-input" type="email" name=rec_email id="rec_email" value="{{ old('rec_email') }}">
                                                 </div>
                                                 <div class="uk-grid-margin">
-                                                    <button type="submit" class="uk-button uk-button-primary">Order and Proceed to payments</button>
+                                                    <button type="submit" class="uk-button uk-button-primary" @if(count(LaraCart::getItems()) == 0) disabled @endif>Order and Proceed to payments</button>
                                                 </div>
                                             </div>
                                         </div>
