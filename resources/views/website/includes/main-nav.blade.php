@@ -229,7 +229,7 @@
                         <a class="uk-button uk-button-default uk-margin-small uk-width-1-1 uk-text-uppercase" href="{{ route('website.cart') }}">view cart</a>
                     </div>
                     <div>
-                        <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1 uk-text-uppercase" href="#">checkout</a>
+                        <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1 uk-text-uppercase" href="{{ route('website.checkout') }}">checkout</a>
                     </div>
                 </div>
             </footer>

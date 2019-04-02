@@ -29,7 +29,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
         $groupings = ProductGrouping::all();
         $categories = ProductCategory::all();
 
@@ -145,5 +144,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function feature(Product $product)
+    {
+        $product->featured = ($product->featured) ? false : true;
+        $product->save();
+
+        return redirect()->back()->withMessage('successful.');
     }
 }

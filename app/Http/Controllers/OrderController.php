@@ -44,6 +44,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Models\Store  $store
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */

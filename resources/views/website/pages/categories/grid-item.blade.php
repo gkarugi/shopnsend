@@ -1,5 +1,5 @@
 <div class="uk-width-1-1@s uk-width-1-3@m uk-width-1-4@l">
-    <a href="{{ route('website.categories.show', $category) }}" class="uk-link-reset" title="{{ $category->name }}">
+    <a href="{{ route('website.products.category.index', $category) }}" class="uk-link-reset" title="{{ $category->name }}">
         <div class="uk-card uk-card-default uk-card-hover">
             <div class="uk-card-media-top">
                 <img class="img" src="{{ ($category->getFirstMedia('main-images')) ? get_media_url($category->getFirstMedia('main-images')) : '#' }}" alt="{{ $category->name }}">

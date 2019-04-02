@@ -1,9 +1,9 @@
 @extends('dashboard.layouts.app')
 
-@section('page_title','Store Orders')
+@section('page_title','Store Order # ' . $order->number)
 
 @section('page_action')
-    <a href="{{ route('orders.index',['store' => $store]) }}" class="btn btn-info">Store Orders</a>
+    <a href="{{ route('orders.index',['store' => $store]) }}" class="btn btn-info">All Store Orders</a>
 @stop
 
 @section('page')
@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Store Order</h3>
+                    <h3 class="card-title">Order Items</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
@@ -19,10 +19,9 @@
                             <tr>
                                 <th class="w-1">Order ID.</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Quantity</th>
-                                <th>Total Amount</th>
+                                <th>price</th>
+                                <th>Redeemable Quantity</th>
+                                <th>Code</th>
                                 <th>Paid</th>
                                 <th>Created</th>
                                 <th></th>
@@ -30,19 +29,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{--@foreach($orders as $order)--}}
+                            @foreach($order->storeOrderItems()->get() as $item)
                                 <tr>
                                     <td><span class="text-muted">{{ $order->number }}</span></td>
-                                    <td>{{ $order->first_name }} {{ $order->last_name }}</td>
-                                    <td>{{ $order->email }}</td>
-                                    <td>{{ $order->phone }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $item->redeemable_qty }}</td>
+                                    <td>{{ $item->code }}</td>
                                     <td>
                                         @if($order->paid)
-                                            <span class="status-icon bg-success"></span> active
+                                            <span class="status-icon bg-success"></span> paid
                                         @else
-                                            <span class="status-icon bg-danger"></span> inactive
+                                            <span class="status-icon bg-danger"></span> unpaid
                                         @endif
                                     </td>
                                     <td>
@@ -50,7 +48,7 @@
                                     </td>
 
                                     <td class="text-right">
-                                        <a href="{{ route('orders.show',['store' => $store, 'order' => $order]) }}" class="btn btn-secondary btn-sm">View</a>
+                                        {{--<a href="{{ route('orders.show',['store' => $store, 'order' => $order]) }}" class="btn btn-secondary btn-sm">View</a>--}}
                                         {{--<div class="dropdown">--}}
                                             {{--<button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>--}}
                                         {{--</div>--}}
@@ -63,7 +61,7 @@
                                         {{--@endcan--}}
                                     </td>
                                 </tr>
-                            {{--@endforeach--}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
