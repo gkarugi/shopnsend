@@ -23,6 +23,7 @@ Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () 
     Route::post('categories/{category}/feature', 'ProductCategoryController@feature')->name('categories.feature');
     Route::resource('productGroupings', 'ProductGroupingController');
     Route::resource('products', 'ProductController');
+    Route::post('products/{product}/feature', 'ProductController@feature')->name('products.feature');
     Route::resource('stores/{store}/orders', 'OrderController')->only(['index','show']);
     Route::get('pos', 'POSController@index')->name('pos.index');
     Route::post('redeem', 'POSController@redeemItems')->name('pos.redeemItems');

@@ -21,8 +21,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Quantity</th>
-                                <th>Total Amount</th>
+                                {{--<th>Total Amount</th>--}}
                                 <th>Paid</th>
                                 <th>Created</th>
                                 <th></th>
@@ -36,13 +35,12 @@
                                     <td>{{ $order->first_name }} {{ $order->last_name }}</td>
                                     <td>{{ $order->email }}</td>
                                     <td>{{ $order->phone }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    {{--<td>{{ $order-> }}</td>--}}
                                     <td>
                                         @if($order->paid)
-                                            <span class="status-icon bg-success"></span> active
+                                            <span class="status-icon bg-success"></span> paid
                                         @else
-                                            <span class="status-icon bg-danger"></span> inactive
+                                            <span class="status-icon bg-danger"></span> unpaid
                                         @endif
                                     </td>
                                     <td>

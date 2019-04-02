@@ -19,7 +19,7 @@ class MenuHelper
                 ]],
                 ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
                     ['route' => '#','text' => 'Orders'],
-                    ['route' => '#', 'text' => 'Customers'],
+//                    ['route' => '#', 'text' => 'Customers'],
                 ]],
             ]);
 
@@ -34,7 +34,7 @@ class MenuHelper
                 ]],
                 ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
                     ['route' => route('orders.index', auth()->user()->stores()->first()),'text' => 'Orders'],
-                    ['route' => '#', 'text' => 'Customers'],
+//                    ['route' => '#', 'text' => 'Customers'],
                 ]],
             ]);
         }  elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('cashier')) {

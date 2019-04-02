@@ -3,12 +3,22 @@
 @section('page_title', 'Home')
 
 @section('content')
-    <div class="uk-section uk-section-default uk-margin-remove-bottom uk-padding-remove-bottom">
+    <div class="uk-section uk-section-default uk-margin-remove-bottom uk-padding">
         <div class="uk-container">
             <h3>Featured Stores</h3>
             <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
                 @foreach($stores as $store)
                     @include('website.pages.stores.grid-item')
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="uk-section uk-section-muted uk-margin-remove-bottom uk-padding">
+        <div class="uk-container">
+            <h3>Featured Products</h3>
+            <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
+                @foreach($products as $product)
+                    @include('website.pages.products.grid-item')
                 @endforeach
             </div>
         </div>

@@ -145,4 +145,12 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function feature(Product $product)
+    {
+        $product->featured = ($product->featured) ? false : true;
+        $product->save();
+
+        return redirect()->back()->withMessage('successful.');
+    }
 }
