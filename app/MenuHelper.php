@@ -56,7 +56,7 @@ class MenuHelper
     {
         $menu = collect([
             ['route' => route('website.stores.index'), 'text' => 'Stores'],
-            ['route' => route('website.products.index'), 'text' => 'Products'],
+            ['route' => route('website.products.index'), 'text' => 'Menu'],
             ['route' => route('website.categories.index'), 'text' => 'Categories'],
         ]);
 

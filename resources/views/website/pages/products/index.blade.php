@@ -7,13 +7,8 @@
     <div class="uk-section">
         <div class="uk-container">
             <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
-                @foreach($products as $products)
-                    @component('website.components.card')
-                        {{ ($products->getFirstMedia('main-images')) ? get_media_url($products->getFirstMedia('main-images')) : '#' }}
-                        @slot('actionLink', route('website.products.show', $products))
-                        @slot('imageAlt', $products->name)
-                        @slot('title', $products->name)
-                    @endcomponent
+                @foreach($products as $product)
+                    @include('website.pages.products.grid-item')
                 @endforeach
             </div>
             {{--{{ $safaris->links('vendor.pagination.uikit') }}--}}

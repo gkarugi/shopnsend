@@ -34,6 +34,7 @@ Route::group(['as' => 'website.', 'namespace' => 'Website'],function () {
     Route::resource('categories','WebsiteCategoryController')->only(['index','show']);
     Route::resource('stores','WebsiteStoreController')->only(['index','show']);
     Route::resource('products','WebsiteProductController')->only(['index','show']);
+    Route::get('categories/{category}/menus','WebsiteProductController@byCategory')->name('products.category.index');
     Route::get('about','WebsitePageController@about')->name('about');
     Route::get('contact','WebsitePageController@contact')->name('contact');
     Route::post('cartAdd/{product}','OrderController@addToCart')->name('cartAdd');

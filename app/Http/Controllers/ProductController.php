@@ -29,7 +29,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
         $groupings = ProductGrouping::all();
         $categories = ProductCategory::all();
 
