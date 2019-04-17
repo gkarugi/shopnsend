@@ -3,8 +3,8 @@
 @section('page_title', 'My Cart')
 
 @section('page_title_action')
-    <a class="uk-link-muted uk-text-small" href="{{ route('website.cart') }}">
-        <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-left; ratio: .75;"></span> Return to cart
+    <a class="uk-link-muted uk-text-small" href="{{ route('website.checkout') }}">
+        Go to Checkout <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-right; ratio: .75;"></span>
     </a>
 @stop
 
@@ -50,17 +50,17 @@
                                                         <div>{{ $item->currency }} {{ $item->price }}</div>
                                                     </div>
                                                     <div class="uk-inline">
-                                                        <a class="uk-form-icon uk-form-icon-flip" href="" uk-icon="icon: plus; ratio: .75" onclick="event.preventDefault(); document.getElementById('add-qty').submit();"></a>
-                                                        <a class="uk-form-icon" href="" uk-icon="icon: minus; ratio: .75" style="padding-left: 15px" onclick="event.preventDefault(); document.getElementById('sub-qty').submit();"></a>
+                                                        <a class="uk-form-icon uk-form-icon-flip" href="" uk-icon="icon: plus; ratio: .75" onclick="event.preventDefault(); document.getElementById('add-qty{{ $item->getHash() }}').submit();"></a>
+                                                        <a class="uk-form-icon" href="" uk-icon="icon: minus; ratio: .75" style="padding-left: 15px" onclick="event.preventDefault(); document.getElementById('sub-qty{{ $item->getHash() }}').submit();"></a>
                                                         <input class="uk-input" name="qty" value="{{ $item->qty }}">
 
-                                                        <form id="add-qty" action="{{ route('website.cartQtyAdd') }}" method="POST" style="display: none;">
+                                                        <form id="add-qty{{ $item->getHash() }}" action="{{ route('website.cartQtyAdd') }}" method="POST" style="display: none;">
                                                             @csrf
                                                             <input type="hidden" name="hash" value="{{ $item->getHash() }}">
                                                             <input type="hidden" name="qty" value="{{ $item->qty }}">
                                                         </form>
 
-                                                        <form id="sub-qty" action="{{ route('website.cartQtySub') }}" method="POST" style="display: none;">
+                                                        <form id="sub-qty{{ $item->getHash() }}" action="{{ route('website.cartQtySub') }}" method="POST" style="display: none;">
                                                             @csrf
                                                             <input type="hidden" name="hash" value="{{ $item->getHash() }}">
                                                             <input type="hidden" name="qty" value="{{ $item->qty }}">
@@ -93,16 +93,49 @@
                     </div>
                     <div class="uk-width-1-1 tm-aside-column uk-width-1-4@m">
                         <div class="uk-card uk-card-default uk-card-small tm-ignore-container uk-sticky" uk-sticky="offset: 80; bottom: true; media: @m;">
-                            <div class="uk-card-body">
+                            <section class="uk-card-body">
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-muted">Shipping</div>
+                                    </div>
+                                    <div class="uk-text-right">
+                                        <div>Pick up from store</div>
+                                        <div class="uk-text-meta">Free</div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-muted">Payment</div>
+                                    </div>
+                                    <div class="uk-text-right">
+                                        <div>Online using Ipay Africa</div>
+                                    </div>
+                                </div>
                                 <div class="uk-grid-small uk-grid" uk-grid="">
                                     <div class="uk-width-expand uk-text-muted uk-first-column">Subtotal</div>
-                                    <div>KES {{ LaraCart::subTotal($formatted = false, $withDiscount = false) }}</div>
+                                    <div>KES {{ LaraCart::subTotal($formatted = false, $withDiscount = true) }}</div>
                                 </div>
-                            </div>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-muted">Fee</div>
+                                    </div>
+                                    <div class="uk-text-right">
+                                        <div class="uk-text-muted">KES {{ LaraCart::getFee('serviceFee')->getAmount($format = false, $withTax = false) }}</div>
+                                    </div>
+                                </div>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-muted">Discount</div>
+                                    </div>
+                                    <div class="uk-text-right">
+                                        <div class="uk-text-danger">- KES 0</div>
+                                    </div>
+                                </div>
+                            </section>
                             <div class="uk-card-body">
                                 <div class="uk-grid-small uk-flex-middle uk-grid" uk-grid="">
                                     <div class="uk-width-expand uk-text-muted uk-first-column">Total</div>
-                                    <div class="uk-text-lead uk-text-bolder">KES {{ LaraCart::total($formatted = false, $withDiscount = false) }}</div>
+                                    <div class="uk-text-lead uk-text-bolder">KES {{ LaraCart::total($formatted = false, $withDiscount = true, $withTax = false, $withFees = true) }}</div>
                                 </div>
                                 <hr>
                                 <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="{{ route('website.checkout') }}">checkout</a></div>

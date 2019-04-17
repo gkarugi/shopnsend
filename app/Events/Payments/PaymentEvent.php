@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Payments;
 
-use App\Models\Order;
+use App\Receipt;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,21 +11,24 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class OrderPaidEvent
+class PaymentEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
+    /**
+     * @var \App\Receipt
+     */
+    public $receipt;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Models\Order
+     * @param \App\Receipt $receipt
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Receipt $receipt)
     {
-        $this->order = $order;
+        $this->receipt = $receipt;
     }
 
     /**

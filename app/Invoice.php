@@ -13,6 +13,11 @@ class Invoice extends Model
 
     public function order()
     {
-        $this->belongsTo(Order::class,'order_id');
+        return $this->belongsTo(Order::class,'order_id');
+    }
+
+    public function receipts()
+    {
+        return $this->hasMany(Receipt::class,'invoice_id');
     }
 }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Events\OrderPaidEvent;
-use App\Events\OrderPlacedEvent;
+use App\Events\Orders\OrderEvent;
+use App\Events\Orders\OrderEvents;
+use App\Events\Payments\PaymentEvent;
+use App\Events\Payments\PaymentEvents;
 use App\Generators\TimeHashGenerator;
-use App\Invoice;
 use App\Ipay;
 use App\IpayTransaction;
 use App\Models\Order;
@@ -78,12 +79,15 @@ class OrderController extends Controller
         if (count(LaraCart::getItems()) == 0) {
             return redirect()->back()->withError('unsuccessful. Your Cart is empty');
         }
+
         DB::beginTransaction();
 
-        try{
+        try {
             //saving logic here
             $order = new Order();
             $order->number = $this->generator->generateNumber();
+            $order->currency = 'KES';
+            $order->fee = LaraCart::getFee('serviceFee')->getAmount($format = false, $withTax = false);
             $order->status = 'unpaid';
             $order->first_name = $request->get('fname');
             $order->last_name = $request->get('lname');
@@ -109,10 +113,14 @@ class OrderController extends Controller
                 ]);
             }
 
+            $orderItemsSum = $order->orderItems->sum(function ($item) {
+                return $item->quantity * $item->price;
+            });
+
             $order->invoice()->create([
                 'invoice_number' => $this->generator->generateNumber(),
-                'total_amount' => $order->orderItems()->sum('price'),
-                'due_amount' => $order->orderItems()->sum('price'),
+                'total_amount' => $orderItemsSum + (int) $order->fee,
+                'due_amount' => $orderItemsSum  + (int) $order->fee,
                 'excess_amount' => 0,
                 'currency' => 'KES'
             ]);
@@ -125,7 +133,7 @@ class OrderController extends Controller
 
         DB::commit();
 
-        event(new OrderPlacedEvent($order));
+        event(OrderEvents::CREATED, new OrderEvent($order));
 
         $cashier = new Ipay();
 
@@ -200,9 +208,11 @@ class OrderController extends Controller
             throw $exception;
         }
 
-        event(new OrderPaidEvent($order));
+        event(PaymentEvents::RECEIVED, new PaymentEvent($receipt));
+        event(OrderEvents::PAID, new OrderEvent($order));
 
         LaraCart::emptyCart();
+
         return redirect()->route('website.home')->withSuccess('Order completed successfully');
     }
 }

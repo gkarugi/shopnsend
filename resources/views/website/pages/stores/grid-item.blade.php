@@ -10,9 +10,9 @@
                     <p>{{ $store->description }}</p>
                 </div>
             </div>
-            <div class="uk-card-footer">
-                <p class="uk-text-muted">{{ count($store->products) . \Illuminate\Support\Str::plural(' Meal', count($store->products)) }} | {{ count($store->branches) . \Illuminate\Support\Str::plural(' Location', count($store->branches)) }}</p>
-            </div>
+            {{--<div class="uk-card-footer">--}}
+                {{--<p class="uk-text-muted">{{ count($store->products) . \Illuminate\Support\Str::plural(' Meal', count($store->products)) }} | {{ count($store->branches) . \Illuminate\Support\Str::plural(' Location', count($store->branches)) }}</p>--}}
+            {{--</div>--}}
         </div>
     </a>
 </div>

@@ -66,7 +66,7 @@ class StoreBranchCashiersController extends Controller
                 'name' => $request->get('name'),
                 'store_id' => $store->id,
                 'email' => $request->get('email'),
-                'password' => str_random(),
+                'password' => bcrypt(str_random()),
             ]);
 
             $user->roles()->attach(4);

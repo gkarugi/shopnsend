@@ -5,30 +5,10 @@
 @section('content')
     <div class="uk-section uk-section-default uk-margin-remove-bottom uk-padding">
         <div class="uk-container">
-            <h3>Featured Stores</h3>
+            <h2 class="uk-text-center">Trending Stores to choose from</h2>
             <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
                 @foreach($stores as $store)
                     @include('website.pages.stores.grid-item')
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="uk-section uk-section-muted uk-margin-remove-bottom uk-padding">
-        <div class="uk-container">
-            <h3>Featured Products</h3>
-            <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
-                @foreach($products as $product)
-                    @include('website.pages.products.grid-item')
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="uk-section uk-section-default uk-margin-remove-top">
-        <div class="uk-container">
-            <h3>Featured Categories</h3>
-            <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
-                @foreach($categories as $category)
-                    @include('website.pages.categories.grid-item')
                 @endforeach
             </div>
         </div>

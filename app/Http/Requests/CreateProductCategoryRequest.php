@@ -26,8 +26,8 @@ class CreateProductCategoryRequest extends FormRequest
         return [
             'name' => 'required|string',
             'main_image' => 'required|image',
-            'banner_image' => 'image',
-            'category' => 'required'
+            'banner_image' => 'sometimes|image',
+            'parent_category' => 'required'
         ];
     }
 }
