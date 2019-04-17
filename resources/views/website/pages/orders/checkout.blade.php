@@ -1,6 +1,12 @@
 @extends('website.layouts.app')
 
-@section('page_title', 'My Cart')
+@section('page_title', 'Checkout')
+
+@section('page_title_action')
+    <a class="uk-link-text uk-text-small" href="{{ route('website.cart') }}">
+        <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-left; ratio: .75;"></span> Return to Cart
+    </a>
+@stop
 
 @section('content')
     <section class="uk-section">
@@ -81,7 +87,7 @@
                                                     <div class="uk-text-meta">{{ $item->qty }} × {{ $item->price }}</div>
                                                 </div>
                                                 <div class="uk-text-right">
-                                                    <div>{{ $item->qty * $item->price }}</div>
+                                                    <div>KES {{ $item->qty * $item->price }}</div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -117,6 +123,14 @@
                                     </div>
                                     <div class="uk-grid-small" uk-grid>
                                         <div class="uk-width-expand">
+                                            <div class="uk-text-muted">Fee</div>
+                                        </div>
+                                        <div class="uk-text-right">
+                                            <div class="uk-text-muted">KES {{ LaraCart::getFee('serviceFee')->getAmount($format = false, $withTax = false) }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand">
                                             <div class="uk-text-muted">Discount</div>
                                         </div>
                                         <div class="uk-text-right">
@@ -130,7 +144,7 @@
                                             <div class="uk-text-muted">Total</div>
                                         </div>
                                         <div class="uk-text-right">
-                                            <div class="uk-text-lead uk-text-bolder">KES {{ LaraCart::total($formatted = false, $withDiscount = false) }}</div>
+                                            <div class="uk-text-lead uk-text-bolder">KES {{ LaraCart::total($formatted = false, $withDiscount = true, $withTax = false, $withFees = true) }}</div>
                                         </div>
                                     </div>
                                 </section>

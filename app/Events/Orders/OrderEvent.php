@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Orders;
 
 use App\Models\Order;
 use Illuminate\Broadcasting\Channel;
@@ -11,12 +11,12 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class OrderPlacedEvent
+class OrderEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var Order
+     * @var \App\Models\Order
      */
     public $order;
 
@@ -24,6 +24,7 @@ class OrderPlacedEvent
      * Create a new event instance.
      *
      * @param \App\Models\Order $order
+     * @return void
      */
     public function __construct(Order $order)
     {

@@ -46,6 +46,7 @@ class Role extends Model
             if ($this->hasPermission($permission))
                 return true;
         }
+
         return false;
     }
 
