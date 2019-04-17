@@ -1,9 +1,10 @@
-<div class="uk-section uk-padding-remove-top uk-padding-remove-bottom">
-    <div class="uk-container">
-        <div class="uk-text-center">
-            <a href="{{ route('website.home') }}" class="uk-navbar-item uk-logo uk-visible@s uk-display-block">
-                <span class="tagline uk-margin-medium-left uk-margin-remove-top">{{ config("app.name") }} &copy; {{ date('Y') }}</span>
-            </a>
+<footer class="uk-section-muted">
+    <div class="uk-section uk-section-small">
+        <div class="uk-container">
+            <div class="uk-grid uk-flex-between">
+                <p>&copy; {{ date('Y') }} {{ config("app.name") }}</p>
+                <p><a href="#top" uk-scroll>Back to top</a></p>
+            </div>
         </div>
     </div>
-</div>
+</footer>

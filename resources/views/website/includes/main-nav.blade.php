@@ -1,4 +1,4 @@
-<header data-uk-sticky="animation: uk-animation-slide-top">
+<header data-uk-sticky="animation: uk-animation-slide-top" id="top">
     <div class="uk-navbar-container">
         <div class="uk-container">
             <nav class="uk-navbar main-nav" uk-navbar style="min-height: 80px">
