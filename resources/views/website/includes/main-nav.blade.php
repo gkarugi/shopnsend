@@ -26,7 +26,10 @@
                                 <div class="uk-navbar-dropdown"  uk-dropdown="mode: click">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li>
-                                            <a href=""><span data-uk-icon="icon: list"></span> &nbsp;    My Orders</a>
+                                            <a href="{{ route('website.profile.orders') }}"><span data-uk-icon="icon: list"></span> &nbsp; My Orders</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('website.profile.settings') }}"><span data-uk-icon="icon: cog"></span> &nbsp; My Settings</a>
                                         </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>

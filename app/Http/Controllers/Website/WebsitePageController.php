@@ -29,4 +29,14 @@ class WebsitePageController extends Controller
     {
         return view('website.pages.contact');
     }
+
+    public function mySettings()
+    {
+        return view('website.pages.profile.settings');
+    }
+
+    public function myOrders()
+    {
+        return view('website.pages.profile.orders');
+    }
 }
