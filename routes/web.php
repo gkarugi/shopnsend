@@ -32,6 +32,8 @@ Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () 
 
 Route::group(['as' => 'website.', 'namespace' => 'Website'],function () {
     Route::get('/','WebsitePageController@home')->name('home');
+    Route::get('/profile/settings','WebsitePageController@mySettings')->name('profile.settings')->middleware('auth');
+    Route::get('/profile/orders', 'WebsitePageController@myOrders')->name('profile.orders')->middleware('auth');
     Route::resource('categories','WebsiteCategoryController')->only(['index','show']);
     Route::resource('stores','WebsiteStoreController')->only(['index','show']);
     Route::resource('products','WebsiteProductController')->only(['index','show']);

@@ -1,4 +1,4 @@
-<header data-uk-sticky="animation: uk-animation-slide-top">
+<header data-uk-sticky="animation: uk-animation-slide-top" id="top">
     <div class="uk-navbar-container">
         <div class="uk-container">
             <nav class="uk-navbar main-nav" uk-navbar style="min-height: 80px">
@@ -25,8 +25,16 @@
                                 </a>
                                 <div class="uk-navbar-dropdown"  uk-dropdown="mode: click">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        @if(!auth()->user()->inRole('customer'))
+                                            <li>
+                                                <a href="{{ route('dashboard') }}"><span data-uk-icon="icon: cog"></span> &nbsp; Dashboard</a>
+                                            </li>
+                                        @endif
                                         <li>
-                                            <a href=""><span data-uk-icon="icon: list"></span> &nbsp;    My Orders</a>
+                                            <a href="{{ route('website.profile.orders') }}"><span data-uk-icon="icon: list"></span> &nbsp; My Orders</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('website.profile.settings') }}"><span data-uk-icon="icon: cog"></span> &nbsp; My Settings</a>
                                         </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>

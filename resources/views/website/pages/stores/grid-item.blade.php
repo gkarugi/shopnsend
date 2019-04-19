@@ -1,4 +1,4 @@
-<div class="uk-width-1-1@s uk-width-1-3@m uk-width-1-4@l">
+<div class="uk-width-1-1@s uk-width-1-3@m uk-width-1-3@l">
     <a href="{{ route('website.stores.show', $store) }}" class="uk-link-reset" title="{{ $store->name }}">
         <div class="uk-card uk-card-default uk-card-hover">
             <div class="uk-card-media-top">

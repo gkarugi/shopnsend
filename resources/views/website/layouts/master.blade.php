@@ -107,5 +107,14 @@
         @endif
 
         @stack('scripts')
+
+        @if(old('modal') !== null)
+            <script type="application/javascript">
+                UIkit.modal('#{{ old('modal')}}').show();
+                if ('{{ old('name') }}')  {
+                    UIkit.switcher('#login-register-switch').show(1);
+                }
+            </script>
+        @endif
     </body>
 </html>
