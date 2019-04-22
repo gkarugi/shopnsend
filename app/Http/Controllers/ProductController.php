@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Laratables\ProductLaratables;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductGrouping;
+use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,13 +15,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | array
      */
     public function index()
     {
-        $products = Product::all();
+        if (request()->ajax()) {
+            return Laratables::recordsOf(Product::class, ProductLaratables::class);
+        }
 
-        return view('dashboard.products.index', compact('products'));
+        return view('dashboard.products.index');
     }
 
     /**

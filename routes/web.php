@@ -15,7 +15,14 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
+    Route::get('account','Administrator\AdministratorAccountBalanceController@account')->name('admin.account');
+    Route::get('orders','Administrator\AdministratorOrderController@index')->name('admin.orders.index');
+    Route::get('orders/{order}','Administrator\AdministratorOrderController@show')->name('admin.orders.show');
+    Route::get('invoices','Administrator\AdministratorOrderController@invoicesIndex')->name('admin.invoices.index');
+    Route::get('receipts','Administrator\AdministratorOrderController@receiptsIndex')->name('admin.receipts.index');
+    Route::get('ipayTxns','Administrator\AdministratorOrderController@ipayTxnsIndex')->name('admin.ipayTxns.index');
     Route::resource('stores', 'StoreController');
+    Route::get('myAccount/{store}','StoreController@storeAccount')->name('stores.account');
     Route::post('stores/{store}/feature', 'StoreController@feature')->name('stores.feature');
     Route::resource('stores/{store}/branches', 'StoreBranchController');
     Route::resource('stores/{store}/branches/{branch}/cashiers', 'StoreBranchCashiersController');

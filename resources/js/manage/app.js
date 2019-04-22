@@ -33,3 +33,4 @@ require('./bootstrap');
 // });
 
 require('./script');
+require('./dataTables');

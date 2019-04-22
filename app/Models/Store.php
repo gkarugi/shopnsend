@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -17,7 +18,7 @@ class Store extends Model implements HasMedia
     use Sluggable, HasMediaTrait;
 
     protected $fillable = [
-        'name', 'email', 'slug', 'user_id', 'active'
+        'name', 'email', 'slug', 'user_id', 'active', 'currency', 'account_balance'
     ];
 
     /**
@@ -66,12 +67,21 @@ class Store extends Model implements HasMedia
 
     public function orders()
     {
-        $orderItems = $this->orderItems()->with('order')->get();
+//        $orderItems = $this->orderItems();
+//        $orderItems->with('order')->(function ($q) {
+//            dd($q);
+//        });
+        $orderItems = $this->orderItems()->with('order');
 
         $orders = $orderItems->map(function ($item,$key) {
             return $item->order;
         });
 
         return $orders;
+    }
+
+    public function balanceHistories()
+    {
+        return $this->hasMany(StoreBalanceHistory::class, 'store_id');
     }
 }

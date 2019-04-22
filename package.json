@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.6"
     },
     "dependencies": {
+        "datatables.net-bs4": "^1.10.19",
         "feather-icons": "^4.17.0"
     }
 }

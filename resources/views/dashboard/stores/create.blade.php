@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('page_title','Stores')
+@section('page_title', 'Stores')
 
 @section('page_action')
     <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>

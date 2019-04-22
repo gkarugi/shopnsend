@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopnsendAccount extends Model
 {
-
     protected $fillable = [
         'current_balance', 'currency'
     ];

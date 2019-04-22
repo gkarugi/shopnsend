@@ -10,12 +10,12 @@
 
     <!-- Favicon -->
 
-    <title>{{ config('app.name') }}</title>
+    <title>Dashboard - @yield('page_title') &nbsp; | &nbsp; {{ config('app.name') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('/web/js/manifest.js') }}" defer></script>
-    <script src="{{ mix('/web/js/vendor.js') }}" defer></script>
-    <script src="{{ mix('/manage/js/app.js') }}" defer></script>
+    <script src="{{ mix('/web/js/manifest.js') }}"></script>
+    <script src="{{ mix('/web/js/vendor.js') }}"></script>
+    <script src="{{ mix('/manage/js/app.js') }}"></script>
 
     <!-- CSS -->
     <link href="{{ mix('/manage/css/bundle.css') }}" rel="stylesheet">

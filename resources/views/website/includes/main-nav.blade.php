@@ -27,7 +27,7 @@
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         @if(!auth()->user()->inRole('customer'))
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><span data-uk-icon="icon: cog"></span> &nbsp; Dashboard</a>
+                                                <a href="{{ route('dashboard') }}" target="_blank"><span data-uk-icon="icon: cog"></span> &nbsp; Dashboard</a>
                                             </li>
                                         @endif
                                         <li>

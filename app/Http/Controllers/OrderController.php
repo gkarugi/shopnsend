@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Laratables\OrderLaratables;
 use App\Models\Order;
 use App\Models\Store;
+use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Store $store
+     * @return \Illuminate\Http\Response | array
      */
     public function index(Store $store)
     {
+//        if (request()->ajax()) {
+//            return Laratables::recordsOf(Order::class, OrderLaratables::class);
+//        }
         $orders = $store->orders();
 
-        return view('dashboard.orders.index', compact('orders', 'store'));
+        return view('dashboard.orders.index', compact('store','orders'));
     }
 
     /**

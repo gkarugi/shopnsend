@@ -14,4 +14,9 @@ class StoreBalanceHistory extends Model
     {
         return $this->morphTo();
     }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class,'store_id');
+    }
 }

@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStoreRequest;
 use App\Http\Requests\EditStoreRequest;
+use App\Laratables\StoreLaratables;
 use App\Models\Store;
+use App\Models\StoreBalanceHistory;
 use App\Repositories\Store\StoreRepository;
 use App\User;
+use Carbon\Carbon;
+use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -32,13 +36,15 @@ class StoreController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | array
      */
     public function index()
     {
-        $stores = Store::all();
+        if (request()->ajax()) {
+            return Laratables::recordsOf(Store::class, StoreLaratables::class);
+        }
 
-        return view('dashboard.stores.index', compact('stores'));
+        return view('dashboard.stores.index');
     }
 
     /**
@@ -73,6 +79,7 @@ class StoreController extends Controller
             $store = $user->stores()->create([
                 'name' => $request->get('store_name'),
                 'email' => $request->get('store_email'),
+                'currency' => 'KES'
             ]);
 
             $user->update([
@@ -177,5 +184,19 @@ class StoreController extends Controller
         $store->save();
 
         return redirect()->back()->withMessage('successful.');
+    }
+
+    public function storeAccount(Store $store)
+    {
+        if (request()->ajax()) {
+            return Laratables::recordsOf(StoreBalanceHistory::class);
+        }
+
+        $balanceHistories = $store->balanceHistories;
+
+//        $todayincome = $store->balanceHistories()->where('created_at', Carbon::today())->sum('amount');
+        $todayIncome = $store->balanceHistories()->sum('amount');
+
+        return view('dashboard.stores.account', compact('store','todayIncome'));
     }
 }
