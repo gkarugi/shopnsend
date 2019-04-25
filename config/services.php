@@ -43,4 +43,8 @@ return [
         'username' => env('AFRICAS_TALKING_USERNAME'),
         'key' => env('AFRICAS_TALKING_KEY'),
     ],
+    'ipay' => [
+        'vendorid' => env('IPAY_VENDOR_ID'),
+        'hash' => env('IPAY_HASH'),
+    ],
 ];

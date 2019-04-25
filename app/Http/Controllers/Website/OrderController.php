@@ -135,7 +135,7 @@ class OrderController extends Controller
         $cashier = new Ipay();
 
         $response = $cashier->isDemo()
-            ->usingVendorId('sasl', 'SnF4684TDryt56')
+            ->usingVendorId(config('services.ipay.vendorid'), config('services.ipay.hash'))
             ->withCallback(route('website.ipay.callback'))
             ->withCustomer($request->user()->phone, $request->user()->email, false)
             ->transact($order->invoice->due_amount, $order->number, $order->invoice->invoice_number);
