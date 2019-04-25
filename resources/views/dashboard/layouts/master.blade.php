@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
 
-    <title>Dashboard - @yield('page_title') &nbsp; | &nbsp; {{ config('app.name') }}</title>
+    <title>@yield('layout_page_title') &nbsp; | &nbsp; {{ config('app.name') }}</title>
 
     <!-- Scripts -->
     <script src="{{ mix('/web/js/manifest.js') }}"></script>

@@ -1,16 +1,18 @@
 @extends('dashboard.layouts.auth')
 
+@section('page_title', 'Login')
+
 @section('content')
     <form class="card" action="{{ route('login') }}" method="post">
         @csrf
         <div class="card-body p-6">
             <div class="card-title">Login to your account</div>
             <div class="form-group">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" aria-describedby="email" placeholder="Enter email" required autofocus>
-                @if ($errors->has('email'))
+                <label for="identity" class="form-label">Email or phone</label>
+                <input type="text" class="form-control {{ $errors->has('identity') ? ' is-invalid' : '' }}" id="identity" name="identity" value="@if(!is_null(old('phone'))) {{ old('phone') }} @elseif(!is_null(old('email'))) {{ old('email') }} @endif" aria-describedby="identity" placeholder="Enter phone or E-mail" required autofocus>
+                @if ($errors->has('identity'))
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('identity') }}</strong>
                     </span>
                 @endif
             </div>

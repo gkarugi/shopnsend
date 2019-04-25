@@ -42,21 +42,7 @@ class ReceiverOrderNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', AfricasTknSmsChannel::class];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('You have received an order.')
-                    ->action('View Order', url('/'))
-                    ->line('Thank you for using our application!');
+        return [AfricasTknSmsChannel::class];
     }
 
     /**
@@ -86,6 +72,6 @@ class ReceiverOrderNotification extends Notification
             $itemList = $itemList . ' ' . $item->product->name . ' - Qty ' . count($this->itemGroup) . ', ';
         }
 
-        return $this->itemGroup->first()->code . " Successful. You have received an order from " . $this->order->phone . " " . $this->order->first_name . " " . $this->order->last_name . " by " . $this->store->name . '. They include: ' . $itemList;
+        return $this->itemGroup->first()->code . " Successful. You have received an order from " . $this->order->user->name . " by " . $this->store->name . '. They include: ' . $itemList;
     }
 }

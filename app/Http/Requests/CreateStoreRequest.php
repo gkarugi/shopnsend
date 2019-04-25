@@ -26,7 +26,8 @@ class CreateStoreRequest extends FormRequest
         return [
             'store_name' => 'required|string',
             'owner_name' => 'required|string',
-            'owner_email' => 'required|email|unique:users,email'
+            'owner_email' => 'required|email|unique:users,email',
+            'owner_phone' => 'required|unique:users,phone'
         ];
     }
 }

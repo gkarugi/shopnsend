@@ -22,6 +22,7 @@
                                 <th class="w-1">Order ID.</th>
                                 <th>Buyer</th>
                                 <th>Receiver</th>
+                                <th>Receiver Phone</th>
                                 <th>Fee</th>
                                 <th>Amount</th>
                                 <th>Total</th>
@@ -47,8 +48,9 @@
                 ajax: '{!! route('admin.orders.index') !!}',
                 columns: [
                     { name: 'number' },
-                    { name: 'buyerName' },
-                    { name: 'receiverName' },
+                    { name: 'user.name' },
+                    { name: 'receiver_name' },
+                    { name: 'receiver_phone' },
                     { name: 'fee' },
                     { name: 'amount' },
                     { name: 'amountPayable' },

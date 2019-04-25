@@ -47,14 +47,18 @@ class CreateSuperAdministrator extends Command
 
         $name = $this->ask('Enter full name');
         $email = $this->ask('Enter the admin Email address');
+        $phone = $this->ask('Enter the admin phone number');
         $password = $this->secret('Enter the admin\'s password?');
 
         $user = new User();
         $user->name = $name;
         $user->email = $email;
+        $user->phone = $phone;
         $user->email_verified_at = Carbon::now();
         $user->password = bcrypt($password);
         $user->save();
+
+        $user->markPhoneAsVerified();
 
         // TODO: refactor how roles are attached to user
         $user->roles()->attach(1);

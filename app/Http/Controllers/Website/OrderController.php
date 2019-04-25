@@ -76,6 +76,11 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required',
+        ]);
+
         if (count(LaraCart::getItems()) == 0) {
             return redirect()->back()->withError('unsuccessful. Your Cart is empty');
         }
@@ -89,15 +94,9 @@ class OrderController extends Controller
             $order->currency = 'KES';
             $order->fee = LaraCart::getFee('serviceFee')->getAmount($format = false, $withTax = false);
             $order->status = 'unpaid';
-            $order->first_name = $request->get('fname');
-            $order->last_name = $request->get('lname');
-            $order->email = $request->get('email');
-            $order->phone = $request->get('phone');
-            $order->receiver_first_name = $request->get('rec_fname');
-            $order->receiver_last_name = $request->get('rec_lname');
-            $order->receiver_phone = $request->get('rec_phone');
-            $order->receiver_email = $request->get('rec_email');
-//            $order->user_id = auth()->user()->id;
+            $order->receiver_name = $request->get('name');
+            $order->receiver_phone = $request->get('phone');
+            $order->user_id = auth()->user()->id;
             $order->notes = $request->get('notes');
             $order->save();
 
@@ -124,9 +123,7 @@ class OrderController extends Controller
                 'excess_amount' => 0,
                 'currency' => 'KES'
             ]);
-        } catch(\Exception $e)
-        {
-            throw $e;
+        } catch(\Exception $e) {
             DB::rollback();
             return back()->withError('could not checkout successfully');
         }
@@ -140,8 +137,8 @@ class OrderController extends Controller
         $response = $cashier->isDemo()
             ->usingVendorId('sasl', 'SnF4684TDryt56')
             ->withCallback(route('website.ipay.callback'))
-            ->withCustomer($order->phone, $order->email, false)
-            ->transact($order->invoice->total_amount, $order->number, $order->invoice->invoice_number);
+            ->withCustomer($request->user()->phone, $request->user()->email, false)
+            ->transact($order->invoice->due_amount, $order->number, $order->invoice->invoice_number);
 
         return redirect()->away($response['url']);
     }

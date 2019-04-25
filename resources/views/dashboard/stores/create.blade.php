@@ -71,6 +71,15 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="owner_phone" class="form-label">Owner E-mail</label>
+                                    <input type="text" id="owner_phone" name="owner_phone" class="form-control {{ $errors->has('owner_phone') ? ' is-invalid' : '' }}" placeholder="Owner Phone number" value="{{ old('owner_phone') }}" required>
+                                    @if ($errors->has('owner_phone'))
+                                        <div class="invalid-feedback">{{ $errors->first('owner_phone') }}</div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-right">

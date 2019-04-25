@@ -15,20 +15,20 @@
                         @csrf
                         <input type="hidden" name="modal" value="login-register">
 
-                        @if ($errors->has('email'))
-                            <div class="uk-text-danger">{{ $errors->first('email') }}</div>
+                        @if ($errors->has('identity'))
+                            <div class="uk-text-danger">{{ $errors->first('identity') }}</div>
                         @endif
 
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
-                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}" type="text" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input {{ $errors->has('identity') ? ' uk-form-danger' : '' }}" type="text" name="identity" value="@if(!is_null(old('phone'))) {{ old('phone') }} @elseif(!is_null(old('email'))) {{ old('email') }} @endif" placeholder="Phone or E-mail" required autofocus>
                             </div>
                         </div>
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
                                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                <input class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}" type="password" name="password" placeholder="Password" required>
+                                <input class="uk-input {{ $errors->has('identity') ? ' uk-form-danger' : '' }}" type="password" name="password" placeholder="Password" required>
                             </div>
                         </div>
                         <div class="uk-margin uk-text-right@s uk-text-center uk-text-small">
@@ -59,10 +59,19 @@
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}" type="text" name="email" value="{{ old('email') }}" placeholder="Email address" required>
+                                <input class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}" type="email" name="email" value="{{ old('email') }}" placeholder="Email address" required>
                             </div>
                             @if ($errors->has('email'))
                                 <div class="uk-text-danger">{{ $errors->first('email') }}</div>
+                            @endif
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                                <input class="uk-input {{ $errors->has('phone') ? ' uk-form-danger' : '' }}" type="string" name="phone" value="{{ old('phone') }}" placeholder="Phone number" required>
+                            </div>
+                            @if ($errors->has('phone'))
+                                <div class="uk-text-danger">{{ $errors->first('phone') }}</div>
                             @endif
                         </div>
                         <div class="uk-margin">
@@ -96,21 +105,21 @@
                 </li>
                 <li>
                     <h3 class="uk-card-title uk-text-center">Forgot your password?</h3>
-                    <p class="uk-text-center uk-width-medium@s uk-margin-auto">Enter your email address and we will send you a link to reset your password.</p>
-                    <form action="{{ route('password.email') }}" method="post">
+                    <p class="uk-text-center uk-width-medium@s uk-margin-auto">Enter your phone number and we will send you a code to reset your password.</p>
+                    <form action="{{ route('password.phone') }}" method="post">
                         @csrf
                         <input type="hidden" name="modal" value="login-register">
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
-                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}" type="text" name="email" value="{{ old('email') }}" placeholder="Email address" required>
+                                <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                                <input class="uk-input {{ $errors->has('phone') ? ' uk-form-danger' : '' }}" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" required>
                             </div>
-                            @if ($errors->has('email'))
-                                <div class="uk-text-danger">{{ $errors->first('email') }}</div>
+                            @if ($errors->has('phone'))
+                                <div class="uk-text-danger">{{ $errors->first('phone') }}</div>
                             @endif
                         </div>
                         <div class="uk-margin">
-                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit">Send Email</button>
+                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit">Send Code</button>
                         </div>
                         <div class="uk-text-small uk-text-center">
                             <a href="#" uk-switcher-item="0">Back to login</a>

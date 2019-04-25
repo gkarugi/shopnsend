@@ -1,5 +1,9 @@
 @extends('dashboard.layouts.master')
 
+@section('layout_page_title')
+    Authentication - @yield('page_title')
+@stop
+
 @section('mainLayout')
     <div class="page">
         <div class="page-single">

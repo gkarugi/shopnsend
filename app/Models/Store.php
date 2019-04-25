@@ -67,15 +67,15 @@ class Store extends Model implements HasMedia
 
     public function orders()
     {
-//        $orderItems = $this->orderItems();
-//        $orderItems->with('order')->(function ($q) {
-//            dd($q);
-//        });
-        $orderItems = $this->orderItems()->with('order');
+        $orderItems = $this->orderItems()->with('order')->get();
 
-        $orders = $orderItems->map(function ($item,$key) {
-            return $item->order;
-        });
+        if (count($orderItems) >= 1) {
+            $orders = $orderItems->map(function ($item,$key) {
+                return $item->order;
+            });
+        } else {
+            $orders = collect();
+        }
 
         return $orders;
     }

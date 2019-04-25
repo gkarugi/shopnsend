@@ -71,8 +71,11 @@ class StoreController extends Controller
             $user = User::create([
                 'name' => $request->get('owner_name'),
                 'email' => $request->get('owner_email'),
+                'phone' => $request->get('owner_phone'),
                 'password' => bcrypt(str_random()),
             ]);
+
+            $user->markPhoneAsVerified();
 
             $user->roles()->attach(2);
 

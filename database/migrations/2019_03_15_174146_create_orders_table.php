@@ -17,13 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('number', 32);
             $table->string('status', 32);
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('email');
-            $table->string('phone')->nullable();
-            $table->string('receiver_first_name');
-            $table->string('receiver_last_name');
-            $table->string('receiver_email')->nullable();
+            $table->string('receiver_name');
             $table->string('receiver_phone');
             $table->integer('user_id')->unsigned()->nullable();
             $table->text('notes')->nullable();

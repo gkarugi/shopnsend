@@ -65,8 +65,8 @@ class StoreOrderReceivedNotification extends Notification
     {
         return (new MailMessage)
                     ->line('You have a new order.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->action('View Order', route('orders.show', $this->order))
+                    ->line('Thank you for using our service!');
     }
 
     /**

@@ -37,6 +37,8 @@ class WebsitePageController extends Controller
 
     public function myOrders()
     {
-        return view('website.pages.profile.orders');
+        $orders = auth()->user()->orders;
+
+        return view('website.pages.profile.orders', compact('orders'));
     }
 }

@@ -14,26 +14,6 @@ class AdministratorOrderLaratables
     }
 
     /**
-     * Returns buyer full name for the datatables.
-     *
-     * @return string
-     */
-    public static function laratablesCustomBuyerName($order)
-    {
-        return $order->first_name . ' ' . $order->last_name;
-    }
-
-    /**
-     * Returns receiver full name for the datatables.
-     *
-     * @return string
-     */
-    public static function laratablesCustomReceiverName($order)
-    {
-        return $order->receiver_first_name . ' ' . $order->receiver_last_name;
-    }
-
-    /**
      * Returns returns total order amount for the datatables.
      *
      * @return string

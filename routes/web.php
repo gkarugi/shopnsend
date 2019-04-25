@@ -12,6 +12,13 @@
 */
 
 Auth::routes(['verify' => true]);
+Route::post('password-phone','Auth\ForgotPasswordController@passwordPhone')->name('password.phone');
+Route::get('password-phone/reset','Auth\ResetPasswordController@getPasswordResetPhone')->name('password.phone.reset');
+Route::post('password-phone/reset','Auth\ResetPasswordController@passwordDoResetPhone')->name('password.phone.reset.password');
+Route::post('verify-phone','Auth\VerificationController@verifyPhone')->name('verify.phone')->middleware('auth');
+Route::post('verify-phone/edit','Auth\VerificationController@editPhone')->name('verify.edit.phone')->middleware('auth');
+Route::post('verify-phone/resend','Auth\VerificationController@resendCode')->name('verify.phone.resend');
+Route::post('/profile/settings/changePassword','Auth\LoginController@changePassword')->name('profile.update.password')->middleware('auth');
 
 Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
@@ -52,7 +59,7 @@ Route::group(['as' => 'website.', 'namespace' => 'Website'],function () {
     Route::post('cartQtyAdd','OrderController@qtyAdd')->name('cartQtyAdd');
     Route::post('cartQtySub','OrderController@qtySub')->name('cartQtySub');
     Route::post('cartRemove','OrderController@cartRemove')->name('cartRemove');
-    Route::get('checkout','OrderController@getCheckout')->name('checkout');
-    Route::post('order','OrderController@order')->name('perform.checkout');
+    Route::get('checkout','OrderController@getCheckout')->name('checkout')->middleware(['auth','phone_verified']);
+    Route::post('order','OrderController@order')->name('perform.checkout')->middleware(['auth','phone_verified']);
     Route::get('ipcbk','OrderController@ipayCallback')->name('ipay.callback');
 });
