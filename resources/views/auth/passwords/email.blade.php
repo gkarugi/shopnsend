@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.auth')
 
+@section('page_title', 'Forgot Password, E-mail reset link')
+
 @section('content')
     <form class="card" action="{{ route('password.email') }}" method="post">
         @csrf

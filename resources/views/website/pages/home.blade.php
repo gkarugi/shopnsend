@@ -18,7 +18,7 @@
 
     <div class="uk-section uk-section-muted uk-margin-remove-bottom uk-padding" id="stores">
         <div class="uk-container">
-            <h2 class="uk-text-center">Trending Stores to choose from</h2>
+            <h2 class="uk-text-center">Choose from these trending stores</h2>
             <div class="uk-grid-small uk-child-width-expand@s" uk-height-match=".img" uk-grid>
                 @foreach($stores as $store)
                     @include('website.pages.stores.grid-item')

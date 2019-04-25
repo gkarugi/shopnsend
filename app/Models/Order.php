@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Invoice;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
     protected $fillable = [
-        'number', 'currency', 'fee', 'order_code', 'status', 'first_name', 'last_name', 'email', 'phone', 'user_id', 'notes', 'paid'
+        'number', 'currency', 'fee', 'order_code', 'status', 'receiver_name', 'receiver_phone', 'user_id', 'notes', 'paid'
     ];
 
     public function orderItems()
@@ -24,5 +25,10 @@ class Order extends Model
     public function invoice()
     {
         return $this->hasOne(Invoice::class,'order_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 }

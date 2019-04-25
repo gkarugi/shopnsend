@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('page_title','Stores')
+@section('page_title', 'Stores')
 
 @section('page_action')
     <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
@@ -68,6 +68,15 @@
                                     <input type="email" id="owner_email" name="owner_email" class="form-control {{ $errors->has('owner_email') ? ' is-invalid' : '' }}" placeholder="Owner E-mail" value="{{ old('owner_email') }}" required>
                                     @if ($errors->has('owner_email'))
                                         <div class="invalid-feedback">{{ $errors->first('owner_email') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="owner_phone" class="form-label">Owner E-mail</label>
+                                    <input type="text" id="owner_phone" name="owner_phone" class="form-control {{ $errors->has('owner_phone') ? ' is-invalid' : '' }}" placeholder="Owner Phone number" value="{{ old('owner_phone') }}" required>
+                                    @if ($errors->has('owner_phone'))
+                                        <div class="invalid-feedback">{{ $errors->first('owner_phone') }}</div>
                                     @endif
                                 </div>
                             </div>

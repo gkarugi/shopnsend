@@ -6,6 +6,7 @@ use App\Http\Requests\CreateStoreBranchRequest;
 use App\Http\Requests\EditStoreBranchRequest;
 use App\Models\Store;
 use App\Models\StoreBranch;
+use Freshbitsweb\Laratables\Laratables;
 
 class StoreBranchController extends Controller
 {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -36,7 +37,41 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'changePassword']);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        $identity  = request()->get('identity');
+        $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        request()->merge([$fieldName => $identity]);
+
+        return $fieldName;
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate( $request, [
+                'identity' => 'required|string',
+                'password' => 'required|string',
+            ], [
+                'identity.required' => 'Phone or email is required',
+                'password.required' => 'Password is required',
+            ]
+        );
     }
 
     /**
@@ -48,7 +83,9 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return session()->flash('success','Hey, Welcome back ' . $user->name . '!');
+        session()->flash('success','Hey, Welcome back ' . $user->name . '!');
+
+        return redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -62,7 +99,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
+            'identity' => [trans('auth.failed')],
             'modal' => 'login'
         ]);
     }
@@ -76,5 +113,24 @@ class LoginController extends Controller
     protected function loggedOut(Request $request)
     {
         session()->flash('success', 'Hey, You\'ve logged out successfully!');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+           'new_password' => ['required', 'string', 'min:6', 'confirmed']
+        ]);
+
+        $canAuth = Hash::check($request->current_password, $request->user()->password);
+
+        if ($canAuth) {
+            $request->user()->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+
+            return redirect()->back()->withSuccess('You have successfully updated your password');
+        }
+
+        return redirect()->back()->withError('A problem occurred. Your password has not been updated.');
     }
 }

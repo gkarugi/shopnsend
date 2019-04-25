@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.auth')
 
+@section('page_title', 'Reset Password')
+
 @section('content')
     <form class="card" action="{{ route('password.update') }}" method="post">
         @csrf

@@ -16,61 +16,45 @@
                     <h3 class="card-title">Products</h3>
                 </div>
                 <div class="table-responsive">
-                    <table class="table card-table table-vcenter text-nowrap">
+                    <table class="table card-table table-vcenter text-nowrap" id="products-table">
                         <thead>
                             <tr>
                                 <th class="w-1">Product ID.</th>
                                 <th>Name</th>
-                                <th>Created</th>
                                 <th>Status</th>
                                 <th>Featured</th>
+                                <th>Created</th>
+                                <th>Updated</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($products as $product)
-                                <tr>
-                                    <td><span class="text-muted">{{ $product->id }}</span></td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>
-                                        {{ $product->created_at->toFormattedDateString() }}
-                                    </td>
-                                    <td>
-                                        @if($product->active)
-                                            <span class="status-icon bg-success"></span> active
-                                        @else
-                                            <span class="status-icon bg-danger"></span> inactive
-                                        @endif
-                                    </td>
-                                    <td class="text-right">
-                                        {{--<a href="#" class="btn btn-secondary btn-sm">Branches</a>--}}
-                                        @can('update-product')
-                                            <a href="{{ route('products.feature', $product) }}" class="btn btn-secondary btn-sm"
-                                               onclick="event.preventDefault();
-                                                   document.getElementById('feature-form-{{ $product->id }}').submit();">@if($product->featured) Unfeature @else Feature @endif</a>
-                                            <form id="feature-form-{{ $product->id }}" action="{{ route('products.feature', $product) }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        @endcan
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @can('update-product')
-                                            <a class="icon" href="{{ route('products.edit', $product) }}">
-                                                <i class="fe fe-edit"></i>
-                                            </a>
-                                        @endcan
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 @stop
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('#products-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('products.index') !!}',
+                columns: [
+                    { name: 'id' },
+                    { name: 'name' },
+                    { name: 'active' },
+                    { name: 'featured' },
+                    { name: 'created_at' },
+                    { name: 'updated_at' },
+                    { name: 'action', orderable: false, searchable: false },
+                    { name: 'edit', orderable: false, searchable: false },
+                ]
+            });
+        });
+    </script>
+@endpush
 

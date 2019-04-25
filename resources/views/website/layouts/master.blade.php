@@ -54,6 +54,10 @@
 
         @yield('mainLayout')
 
+        @auth
+            @include('website.includes.verify-phone')
+        @endauth
+
         <!-- Scripts -->
         <script src="{{ mix('/web/js/manifest.js') }}"></script>
         <script src="{{ mix('/web/js/vendor.js') }}"></script>
@@ -114,6 +118,18 @@
                 if ('{{ old('name') }}')  {
                     UIkit.switcher('#login-register-switch').show(1);
                 }
+            </script>
+        @endif
+
+        @if(session()->has('phone_confirmed') && session()->get('phone_confirmed') == false)
+            <script type="application/javascript">
+                UIkit.modal('#verify-phone').show();
+            </script>
+        @endif
+
+        @if(session()->has('verify_phone') && session()->get('verify_phone') == true)
+            <script type="application/javascript">
+                UIkit.modal('#verify-phone').show();
             </script>
         @endif
     </body>

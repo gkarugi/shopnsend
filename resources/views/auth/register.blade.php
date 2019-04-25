@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.auth')
 
+@section('page_title', 'Register for an account')
+
 @section('content')
     <form class="card" action="{{ route('register') }}" method="post">
         @csrf

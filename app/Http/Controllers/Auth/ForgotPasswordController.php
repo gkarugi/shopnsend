@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\ForgotPasswordPhoneNotification;
+use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
@@ -28,5 +31,16 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function passwordPhone(Request $request)
+    {
+        $user = User::where('phone',$request->phone)->first();
+
+        if ($user) {
+            $user->notify(new ForgotPasswordPhoneNotification());
+        }
+
+        return redirect()->route('password.phone.reset')->withSuccess('A reset code has been sent to the number provided if it exists');
     }
 }

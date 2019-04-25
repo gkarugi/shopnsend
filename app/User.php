@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Contracts\MustVerifyPhone;
+use App\Models\Order;
 use App\Models\Role;
 use App\Models\Store;
 use App\Models\StoreBranchCashier;
+use App\Notifications\VerifyPhoneNotification;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, MustVerifyPhone
 {
     use Notifiable, VerifiesEmails;
 
@@ -20,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'store_id', 'name', 'email', 'password',
+        'store_id', 'name', 'email', 'phone', 'password',
     ];
 
     /**
@@ -40,6 +43,18 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Route notifications for the AfricasTknSms channel.
+     *
+     * @param \Illuminate\Notifications\Notification $notification
+     *
+     * @return string
+     */
+    public function routeNotificationForAfricasTknSms($notification)
+    {
+        return $this->phone;
+    }
 
     /**
      * A user can have many roles.
@@ -90,5 +105,27 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cashier()
     {
         return $this->hasOne(StoreBranchCashier::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'user_id');
+    }
+
+    public function hasVerifiedPhone()
+    {
+        return ! is_null($this->phone_verified_at);
+    }
+
+    public function markPhoneAsVerified()
+    {
+        return $this->forceFill([
+            'phone_verified_at' => $this->freshTimestamp(),
+        ])->save();
+    }
+
+    public function sendPhoneVerificationNotification()
+    {
+        $this->notify(new VerifyPhoneNotification());
     }
 }

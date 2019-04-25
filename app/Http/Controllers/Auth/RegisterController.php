@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Role;
+use App\Rules\Msisdn;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -43,6 +44,10 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+        if (\request()->get('modal') == 'login-register') {
+            $this->redirectTo = redirect()->back();
+        }
     }
 
     /**
@@ -56,6 +61,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'numeric', new Msisdn(), 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -70,7 +76,8 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email' => $data['email'] ?? null,
+            'phone' => $data['phone'] ?? null,
             'password' => Hash::make($data['password']),
         ]);
 
@@ -109,6 +116,11 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        session()->flash('success', 'Hey, Your account has been created successfully. Check your email for verification!');
+        session()->flash('success', 'Hey, Your account has been created successfully. Check your phone for a verification code!');
+        session()->flash('verify_phone', true);
+
+        if (\request()->get('modal') == 'login-register') {
+            return redirect()->back();
+        }
     }
 }

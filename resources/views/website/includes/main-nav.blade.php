@@ -13,7 +13,9 @@
                 <div class="uk-navbar-right">
                     @guest
                         <div class="uk-navbar-item uk-visible@m">
-                            <a href="#login-register" class="uk-button uk-button-danger tm-button-default uk-text-uppercase uk-text-bold" uk-toggle>Login / Register</a>
+                            <div>
+                                <a href="#login-register" class="uk-button uk-button-small uk-button-danger tm-button-default uk-text-bold" uk-toggle>Login / Register</a>
+                            </div>
                             @include('website.includes.login-register')
                         </div>
                     @endguest
@@ -27,7 +29,7 @@
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         @if(!auth()->user()->inRole('customer'))
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><span data-uk-icon="icon: cog"></span> &nbsp; Dashboard</a>
+                                                <a href="{{ route('dashboard') }}" target="_blank"><span data-uk-icon="icon: cog"></span> &nbsp; Dashboard</a>
                                             </li>
                                         @endif
                                         <li>
@@ -49,7 +51,7 @@
                         @endauth
                         <li>
                             <a href="#cart-offcanvas" class="uk-icon" aria-expanded="false" uk-toggle>
-                                <i uk-icon="icon: cart"></i> &nbsp; Cart
+                                <i uk-icon="icon: cart"></i>  &nbsp;  <span class="uk-label uk-label-success uk-border-rounded"> {{ count(LaraCart::getItems()) }}</span>
                             </a>
                         </li>
                     </ul>

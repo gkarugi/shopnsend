@@ -44792,7 +44792,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Freelance\shopnsend\resources\js\website\app.js */"./resources/js/website/app.js");
+module.exports = __webpack_require__(/*! D:\mimi\shopnsend\resources\js\website\app.js */"./resources/js/website/app.js");
 
 
 /***/ })

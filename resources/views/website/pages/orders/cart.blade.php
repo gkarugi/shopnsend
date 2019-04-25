@@ -138,7 +138,7 @@
                                     <div class="uk-text-lead uk-text-bolder">KES {{ LaraCart::total($formatted = false, $withDiscount = true, $withTax = false, $withFees = true) }}</div>
                                 </div>
                                 <hr>
-                                <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="{{ route('website.checkout') }}">checkout</a></div>
+                                <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" @auth href="{{ route('website.checkout') }}" @else href="#login-register" @endauth uk-toggle>checkout</a></div>
                         </div>
                         <div class="uk-sticky-placeholder" style="height: 230px; margin: 0px;" hidden=""></div>
                     </div>

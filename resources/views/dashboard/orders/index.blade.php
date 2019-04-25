@@ -3,7 +3,26 @@
 @section('page_title','Store Orders')
 
 @section('page_action')
-    <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
+    <form>
+        <div class="form-group" style="margin-right: 25px">
+            <div class="row">
+                <label for="selected_store" class="form-label col-auto align-middle" style="margin-top: 8px;">Orders for </label>
+                <select name="selected_store" id="selected_store" class="form-control col" onchange="event.preventDefault();
+                                window.open('{{ route('orders.index', ['store' => $store]) }}','_self');">
+                    <option value=""></option>
+                    @foreach(auth()->user()->stores as $myStore)
+                        <option value="{{ $myStore->id }}" @if($myStore->is($store)) selected @endif>{{ $store->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-auto">
+            <a href="{{ route('stores.index') }}" class="btn btn-info">All Stores</a>
+        </div>
+    </div>
 @stop
 
 @section('page')
@@ -11,62 +30,47 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Store Orders</h3>
+                    <h3 class="card-title">Store Orders - {{ $store->name }}</h3>
                 </div>
                 <div class="table-responsive">
-                    <table class="table card-table table-vcenter text-nowrap">
+                    <table class="table card-table table-vcenter text-nowrap" id="orders-table">
                         <thead>
                             <tr>
                                 <th class="w-1">Order ID.</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+{{--                                <th>Name</th>--}}
+{{--                                <th>Email</th>--}}
+{{--                                <th>Phone</th>--}}
                                 {{--<th>Total Amount</th>--}}
-                                <th>Paid</th>
+{{--                                <th>Paid</th>--}}
                                 <th>Created</th>
-                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($orders as $order)
-                                <tr>
-                                    <td><span class="text-muted">{{ $order->number }}</span></td>
-                                    <td>{{ $order->first_name }} {{ $order->last_name }}</td>
-                                    <td>{{ $order->email }}</td>
-                                    <td>{{ $order->phone }}</td>
-                                    {{--<td>{{ $order-> }}</td>--}}
-                                    <td>
-                                        @if($order->paid)
-                                            <span class="status-icon bg-success"></span> paid
-                                        @else
-                                            <span class="status-icon bg-danger"></span> unpaid
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ $order->created_at->toFormattedDateString() }}
-                                    </td>
-
-                                    <td class="text-right">
-                                        <a href="{{ route('orders.show',['store' => $store, 'order' => $order]) }}" class="btn btn-secondary btn-sm">View</a>
-                                        {{--<div class="dropdown">--}}
-                                            {{--<button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>--}}
-                                        {{--</div>--}}
-                                    </td>
-                                    <td>
-                                        {{--@can('update-branch')--}}
-                                            {{--<a class="icon" href="{{ route('branches.edit', ['store' => $store, 'branch' => $branch]) }}">--}}
-                                                {{--<i class="fe fe-edit"></i>--}}
-                                            {{--</a>--}}
-                                        {{--@endcan--}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 @stop
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('#orders-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('orders.index', ['store' => $store]) !!}',
+                columns: [
+                    { name: 'number' },
+                    // { name: 'name' },
+                    // { name: 'email' },
+                    // { name: 'active' },
+                    // { name: 'featured' },
+                    { name: 'created_at' },
+                    { name: 'action', orderable: false, searchable: false },
+                ]
+            });
+        });
+    </script>
+@endpush
 

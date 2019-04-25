@@ -2,6 +2,10 @@
 
 @section('bodyClass','fix-header card-no-border fix-sidebar')
 
+@section('layout_page_title')
+    Dashboard - @yield('page_title')
+@stop
+
 @section('mainLayout')
     <div class="app" id="app">
         <!-- Main wrapper - style you can find in pages.scss -->

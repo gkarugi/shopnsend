@@ -18,49 +18,19 @@
                             @csrf
                             <div class="uk-grid-medium uk-child-width-1-1 uk-grid-stack" uk-grid>
                                 <section>
-                                    <h2 class="tm-checkout-title">Contact Information</h2>
                                     <div class="uk-card uk-card-default uk-card-small uk-card-body tm-ignore-container">
                                         <div class="uk-card-body">
-                                            <h3 class="tm-checkout-title">Your details</h3>
-                                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s" uk-grid>
-                                                <div>
-                                                    <label for="fname" class="uk-form-label uk-form-label-required">First Name</label>
-                                                    <input class="uk-input" type="text" name=fname id="fname" value="{{ old('fname') }}" required>
-                                                </div>
-                                                <div>
-                                                    <label for="lname" class="uk-form-label uk-form-label-required">Last Name</label>
-                                                    <input class="uk-input" type="text" name="lname" id="lname" value="{{ old('lname') }}" required>
-                                                </div>
-                                                <div class="uk-grid-margin">
-                                                    <label for="phone" class="uk-form-label uk-form-label-required">Phone Number</label>
-                                                    <input class="uk-input" type="text" name="phone" id="phone" value="{{ old('phone') }}" required>
-                                                </div>
-                                                <div class="uk-grid-margin">
-                                                    <label for="email" class="uk-form-label uk-form-label-required">Email</label>
-                                                    <input class="uk-input" type="email" name="email" id="email" value="{{ old('email') }}">
-                                                </div>
+                                            <h3 class="tm-checkout-title">Receiving Customer</h3>
+                                            <div>
+                                                <label for="name" class="uk-form-label uk-form-label-required">Name</label>
+                                                <input class="uk-input" type="text" name=name id="name" value="{{ old('name') }}" required>
                                             </div>
-                                            <h3 class="tm-checkout-title">Receiving customer</h3>
-                                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s" uk-grid>
-                                                <div>
-                                                    <label for="rec_fname" class="uk-form-label uk-form-label-required">First Name</label>
-                                                    <input class="uk-input" type="text" name=rec_fname id="rec_fname" value="{{ old('rec_fname') }}" required>
-                                                </div>
-                                                <div>
-                                                    <label for="rec_lname" class="uk-form-label uk-form-label-required">Last Name</label>
-                                                    <input class="uk-input" type="text" name=rec_lname id="rec_lname" value="{{ old('rec_lname') }}" required>
-                                                </div>
-                                                <div class="uk-grid-margin">
-                                                    <label for="rec_phone" class="uk-form-label uk-form-label-required">Phone Number</label>
-                                                    <input class="uk-input" type="text" name=rec_phone id="rec_phone" value="{{ old('rec_phone') }}" required>
-                                                </div>
-                                                <div class="uk-grid-margin">
-                                                    <label for="rec_email" class="uk-form-label uk-form-label-required">Email</label>
-                                                    <input class="uk-input" type="email" name=rec_email id="rec_email" value="{{ old('rec_email') }}">
-                                                </div>
-                                                <div class="uk-grid-margin">
-                                                    <button type="submit" class="uk-button uk-button-primary" @if(count(LaraCart::getItems()) == 0) disabled @endif>Order and Proceed to payments</button>
-                                                </div>
+                                            <div>
+                                                <label for="phone" class="uk-form-label uk-form-label-required">Phone Number</label>
+                                                <input class="uk-input" type="text" name=phone id="phone" value="{{ old('phone') }}" required>
+                                            </div>
+                                            <div class="uk-grid-margin uk-text-center uk-margin-bottom">
+                                                <button type="submit" class="uk-button uk-button-primary" @if(count(LaraCart::getItems()) == 0) disabled @endif>Order and Proceed to payments</button>
                                             </div>
                                         </div>
                                         <div class="uk-card-footer">

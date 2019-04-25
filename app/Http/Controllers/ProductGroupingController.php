@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductGroupingRequest;
+use App\Laratables\ProductGroupingLaratables;
 use App\Models\ProductGrouping;
+use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Http\Request;
 
 class ProductGroupingController extends Controller
@@ -11,13 +13,15 @@ class ProductGroupingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | array
      */
     public function index()
     {
-        $groupings = ProductGrouping::all();
+        if (request()->ajax()) {
+            return Laratables::recordsOf(ProductGrouping::class, ProductGroupingLaratables::class);
+        }
 
-        return view('dashboard.groupings.index', compact('groupings'));
+        return view('dashboard.groupings.index');
     }
 
     /**

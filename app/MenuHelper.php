@@ -12,15 +12,15 @@ class MenuHelper
                 ['route' => route('dashboard'), 'icon' => '', 'text' => 'Dashboard'],
                 ['route' => '#', 'text' => 'Manage','icon' => '','children' => [
                     ['route' => route('stores.index'), 'text' => 'Stores'],
-                ]],
-                ['route' => '#', 'text' => 'Catalogue','icon' => '','children' => [
                     ['route' => route('categories.index'), 'text' => 'Categories'],
-                    ['route' => '#', 'text' => 'Products'],
                 ]],
                 ['route' => '#', 'text' => 'Sales', 'icon' => '','children' => [
-                    ['route' => '#','text' => 'Orders'],
-//                    ['route' => '#', 'text' => 'Customers'],
+                    ['route' => route('admin.orders.index'), 'text' => 'Orders'],
+                    ['route' => route('admin.invoices.index'),'text' => 'Invoices'],
+                    ['route' => route('admin.ipayTxns.index'),'text' => 'Ipay Transactions'],
+                    ['route' => route('admin.receipts.index'),'text' => 'Receipts'],
                 ]],
+                ['route' => route('admin.account'), 'icon' => '', 'text' => 'Account'],
             ]);
 
         } elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('store_owner')) {
@@ -36,6 +36,7 @@ class MenuHelper
                     ['route' => route('orders.index', auth()->user()->stores()->first()),'text' => 'Orders'],
 //                    ['route' => '#', 'text' => 'Customers'],
                 ]],
+                ['route' => route('stores.account', auth()->user()->stores->first()), 'icon' => '', 'text' => 'My Account'],
             ]);
         }  elseif (\Auth::guard($guard)->check() && auth()->user()->inRole('cashier')) {
             //Dashboard menu items for cashier

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Rules\Msisdn;
+use App\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -64,5 +67,31 @@ class ResetPasswordController extends Controller
         event(new PasswordReset($user));
 
         $this->guard()->login($user);
+    }
+
+    public function getPasswordResetPhone()
+    {
+        return view('website.auth.passwords.reset_phone');
+    }
+
+    public function passwordDoResetPhone(Request $request)
+    {
+        $this->validate($request, [
+            'phone' => ['required', new Msisdn(), 'exists:users,phone'],
+            'code' => ['required'],
+            'new_password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+
+        $user = User::where('phone',$request->phone)->first();
+
+        if ($user->phone_verification_code == $request->code) {
+            $user->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            return redirect()->route('website.home')->with(['modal' => 'login-register'])->withSuccess('password reset successfully');
+        } else {
+            return redirect()->back()->withInput()->withError('reset code is invalid');
+        }
     }
 }

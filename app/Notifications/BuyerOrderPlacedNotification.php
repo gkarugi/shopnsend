@@ -37,21 +37,7 @@ class BuyerOrderPlacedNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', AfricasTknSmsChannel::class];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('Order placed successfully.')
-                    ->action('View order', url('/'))
-                    ->line('Thank you for using' . config('app.name') . '!');
+        return [AfricasTknSmsChannel::class];
     }
 
     /**

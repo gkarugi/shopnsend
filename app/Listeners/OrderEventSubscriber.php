@@ -21,8 +21,7 @@ class OrderEventSubscriber
      */
     public function onOrderCreated(OrderEvent $event)
     {
-        Notification::route('mail', $event->order->email)
-            ->route('AfricasTknSms', $event->order->phone)
+        Notification::route('AfricasTknSms', $event->order->user)
             ->notify(new BuyerOrderPlacedNotification($event->order));
     }
 
@@ -39,8 +38,7 @@ class OrderEventSubscriber
 
         // Send order received notification to the receiver
         foreach ($grouped as $key => $group) {
-            Notification::route('mail', $event->order->receiver_email)
-                ->route('AfricasTknSms', $event->order->receiver_phone)
+            Notification::route('AfricasTknSms', $event->order->receiver_phone)
                 ->notify(new ReceiverOrderNotification($event->order, Store::find($key), $group));
         }
 
