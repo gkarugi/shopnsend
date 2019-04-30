@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Role;
 use App\Models\Store;
 use App\Models\StoreBranchCashier;
+use App\Notifications\VerifyEmailNotification;
 use App\Notifications\VerifyPhoneNotification;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
@@ -127,5 +128,10 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyPhone
     public function sendPhoneVerificationNotification()
     {
         $this->notify(new VerifyPhoneNotification());
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification());
     }
 }
