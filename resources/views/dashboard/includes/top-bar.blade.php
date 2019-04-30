@@ -9,37 +9,6 @@
                 <div class="nav-item d-none d-md-flex">
                     <a href="{{ route('website.home') }}" class="btn btn-sm btn-outline-primary" target="_blank">Website</a>
                 </div>
-                <div class="dropdown d-none d-md-flex">
-                    <a class="nav-link icon" data-toggle="dropdown">
-                        <i class="fe fe-bell"></i>
-                        <span class="nav-unread"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url({{ asset('user.png') }})"></span>
-                            <div>
-                                <strong>{{ 'james' }}</strong> pushed new commit: Fix page load performance issue.
-                                <div class="small text-muted">10 minutes ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url({{ asset('user.png') }})"></span>
-                            <div>
-                                <strong>{{ 'james' }}</strong> started new task: Tabler UI design.
-                                <div class="small text-muted">1 hour ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item d-flex">
-                            <span class="avatar mr-3 align-self-center" style="background-image: url({{ asset('user.png') }})"></span>
-                            <div>
-                                <strong>{{ 'james' }}</strong> deployed new version of NodeJS REST Api V3
-                                <div class="small text-muted">2 hours ago</div>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item text-center">Mark all as read</a>
-                    </div>
-                </div>
                 <div class="dropdown">
                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                         <span class="avatar" style="background-image: url({{ asset('user.png') }})"></span>
@@ -62,13 +31,13 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         @auth
-                            <a class="dropdown-item" href="#">
-                                <i class="dropdown-icon fe fe-user"></i> Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                            </a>
+{{--                            <a class="dropdown-item" href="#">--}}
+{{--                                <i class="dropdown-icon fe fe-user"></i> Profile--}}
+{{--                            </a>--}}
+{{--                            <div class="dropdown-divider"></div>--}}
+{{--                            <a class="dropdown-item" href="#">--}}
+{{--                                <i class="dropdown-icon fe fe-help-circle"></i> Need help?--}}
+{{--                            </a>--}}
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
