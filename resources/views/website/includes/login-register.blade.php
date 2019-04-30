@@ -70,6 +70,7 @@
                                 <span class="uk-form-icon" uk-icon="icon: phone"></span>
                                 <input class="uk-input {{ $errors->has('phone') ? ' uk-form-danger' : '' }}" type="string" name="phone" value="{{ old('phone') }}" placeholder="Phone number" required>
                             </div>
+                            <div class="uk-text-success">Starts with 2547</div>
                             @if ($errors->has('phone'))
                                 <div class="uk-text-danger">{{ $errors->first('phone') }}</div>
                             @endif
