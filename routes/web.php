@@ -20,7 +20,7 @@ Route::post('verify-phone/edit','Auth\VerificationController@editPhone')->name('
 Route::post('verify-phone/resend','Auth\VerificationController@resendCode')->name('verify.phone.resend');
 Route::post('/profile/settings/changePassword','Auth\LoginController@changePassword')->name('profile.update.password')->middleware('auth');
 
-Route::group(['middleware' => 'verified', 'prefix' => 'dashboard'], function () {
+Route::group(['middleware' => ['verified', 'can_access_dashboard'], 'prefix' => 'dashboard'], function () {
     Route::get('/', 'Administrator\AdministratorDashboardController')->name('dashboard');
     Route::get('account','Administrator\AdministratorAccountBalanceController@account')->name('admin.account');
     Route::get('orders','Administrator\AdministratorOrderController@index')->name('admin.orders.index');
