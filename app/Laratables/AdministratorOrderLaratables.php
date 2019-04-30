@@ -50,7 +50,7 @@ class AdministratorOrderLaratables
      */
     public static function laratablesAdditionalColumns()
     {
-        return ['currency', 'fee', 'first_name', 'last_name', 'receiver_first_name', 'receiver_last_name', 'paid'];
+        return ['number', 'currency', 'fee', 'receiver_name', 'receiver_phone', 'paid'];
     }
 
     public static function laratablesCustomAction($order)
