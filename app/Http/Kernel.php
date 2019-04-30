@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CanAccessDashboardMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Support\Facades\App;
 
@@ -62,6 +63,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'phone_verified' => \App\Http\Middleware\HasConfirmedPhone::class,
+        'can_access_dashboard' => \App\Http\Middleware\CanAccessDashboardMiddleware::class,
+        'administrator' => \App\Http\Middleware\AdministratorMiddleware::class,
+        'store_owner' => \App\Http\Middleware\StoreOwnerMiddleware::class,
+        'cashier' => \App\Http\Middleware\CashierMiddleware::class,
+        'customer' => \App\Http\Middleware\CustomerMiddleware::class,
     ];
 
     /**
