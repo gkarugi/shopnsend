@@ -3,10 +3,13 @@
 namespace App\Notifications;
 
 use App\Channels\AfricasTknSmsChannel;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class VerifyPhoneNotification extends Notification
+class VerifyPhoneNotification extends Notification implements ShouldQueue
 {
+    use Queueable;
 
     /**
      * Get the notification's channels.
