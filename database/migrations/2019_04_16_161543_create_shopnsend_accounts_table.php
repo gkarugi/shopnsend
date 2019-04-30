@@ -15,7 +15,7 @@ class CreateShopnsendAccountsTable extends Migration
     {
         Schema::create('shopnsend_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('currency');
+            $table->string('currency')->default('KES');
             $table->bigInteger('current_balance')->default(0);
             $table->timestamps();
         });
