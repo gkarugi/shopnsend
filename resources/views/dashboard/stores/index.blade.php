@@ -19,7 +19,6 @@
                     <table class="table card-table table-vcenter text-nowrap datatable" id="stores-table">
                         <thead>
                             <tr>
-                                <th class="w-1">Store ID.</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
@@ -45,7 +44,6 @@
                 serverSide: true,
                 ajax: '{!! route('stores.index') !!}',
                 columns: [
-                    { name: 'id' },
                     { name: 'name' },
                     { name: 'email' },
                     { name: 'active' },

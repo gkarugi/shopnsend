@@ -19,7 +19,7 @@
                     <table class="table card-table table-vcenter text-nowrap" id="categories-table">
                         <thead>
                             <tr>
-                                <th class="w-1">Category ID.</th>
+{{--                                <th class="w-1">Category ID.</th>--}}
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th>Featured</th>
@@ -44,7 +44,7 @@
                 serverSide: true,
                 ajax: '{!! route('categories.index') !!}',
                 columns: [
-                    { name: 'id' },
+                    // { name: 'id' },
                     { name: 'name' },
                     { name: 'active' },
                     { name: 'featured' },
