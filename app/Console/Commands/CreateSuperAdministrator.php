@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Role;
+use App\Models\ShopnsendAccount;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -62,6 +63,8 @@ class CreateSuperAdministrator extends Command
 
         // TODO: refactor how roles are attached to user
         $user->roles()->attach(1);
+
+        ShopnsendAccount::create();
 
         $this->info('Successfully created the Administrator account');
     }
