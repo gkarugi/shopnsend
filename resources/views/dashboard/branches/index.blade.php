@@ -20,7 +20,6 @@
                     <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                             <tr>
-                                <th class="w-1">Branch ID.</th>
                                 <th>Name</th>
                                 <th>Created</th>
                                 <th>Status</th>
@@ -31,7 +30,6 @@
                         <tbody>
                             @foreach($branches as $branch)
                                 <tr>
-                                    <td><span class="text-muted">{{ $branch->id }}</span></td>
                                     <td>{{ $branch->name }}</td>
                                     <td>
                                         {{ $branch->created_at->toFormattedDateString() }}
