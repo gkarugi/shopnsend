@@ -17,12 +17,11 @@ class OrderController extends Controller
      */
     public function index(Store $store)
     {
-//        if (request()->ajax()) {
-//            return Laratables::recordsOf(Order::class, OrderLaratables::class);
-//        }
-        $orders = $store->orders();
+        if (request()->ajax()) {
+            return Laratables::recordsOf(Order::class, OrderLaratables::class);
+        }
 
-        return view('dashboard.orders.index', compact('store','orders'));
+        return view('dashboard.orders.index', compact('store'));
     }
 
     /**
