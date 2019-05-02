@@ -43,9 +43,9 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ route('cashiers.index',['store' => $store,'branch' => $branch]) }}" class="btn btn-secondary btn-sm">Cashiers</a>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                        </div>
+{{--                                        <div class="dropdown">--}}
+{{--                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>--}}
+{{--                                        </div>--}}
                                     </td>
                                     <td>
                                         @can('update-branch')

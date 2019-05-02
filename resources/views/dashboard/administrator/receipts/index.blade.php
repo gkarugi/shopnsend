@@ -19,7 +19,6 @@
                                 <th>Currency</th>
                                 <th>Created</th>
                                 <th>Updated</th>
-                                <th></th>
                             </tr>
                         </thead>
                     </table>
