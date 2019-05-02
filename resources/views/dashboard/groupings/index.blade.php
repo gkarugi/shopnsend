@@ -48,7 +48,7 @@
                     { name: 'active' },
                     { name: 'created_at' },
                     { name: 'updated_at' },
-                    { name: 'action', orderable: false, searchable: false },
+                    // { name: 'action', orderable: false, searchable: false },
                     { name: 'edit', orderable: false, searchable: false },
                 ]
             });

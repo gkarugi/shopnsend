@@ -26,8 +26,6 @@
                                 <th>Given access at</th>
                                 <th>Settings updated at</th>
                                 <th>Status</th>
-                                <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
